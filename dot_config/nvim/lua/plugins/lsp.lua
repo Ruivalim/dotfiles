@@ -6,7 +6,7 @@ table.insert(plugins, {
 table.insert(plugins, {
 	"williamboman/mason-lspconfig.nvim",
 	opts = {
-		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "tsserver", "vimls" },
+		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "tsserver", "vimls", "taplo" },
 	},
 })
 
@@ -40,6 +40,7 @@ table.insert(after_load, function()
 	require("lspconfig").rust_analyzer.setup({})
 	require("lspconfig").tsserver.setup({})
 	require("lspconfig").vimls.setup({})
+	require("lspconfig").taplo.setup({})
 
 	vim.opt.completeopt = "menu,menuone,noselect"
 
