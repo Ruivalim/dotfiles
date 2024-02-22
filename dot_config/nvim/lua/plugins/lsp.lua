@@ -11,6 +11,13 @@ table.insert(plugins, {
 })
 
 table.insert(plugins, {
+	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	opts = {
+		ensure_installed = { "stylua" },
+	},
+})
+
+table.insert(plugins, {
 	"neovim/nvim-lspconfig",
 })
 
