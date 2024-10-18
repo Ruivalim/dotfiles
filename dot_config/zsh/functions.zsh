@@ -2,7 +2,7 @@ kpn() {
   kubectl get pods --all-namespaces --field-selector spec.nodeName=$1
 }
 
-kdp() {
+kdp () {
   error=$1
   kubectl get pod | grep $1 | awk '{print $1;}' | xargs -I {} kubectl delete pod  {}
 }
@@ -36,3 +36,16 @@ kpd () {
 	fi
 	kubectl describe pod "$selected_pod"
 }
+
+kpl () {
+	_pod=$1
+	_command="${2:-bash}"
+	selected_pod=$(kubectl get pod | grep "$_pod" | awk '{print $1;}' | fzf)
+	if [ -z "$selected_pod" ]
+	then
+		echo "No pod selected."
+		return 1
+	fi
+	kubectl logs -f "$selected_pod"
+}
+
