@@ -12,6 +12,7 @@ require("plugins.delimitmate")
 require("plugins.mundo")
 require("plugins.barbar")
 require("plugins.gitsigns")
+require("plugins.helm")
 
 require("lazy").setup(plugins)
 

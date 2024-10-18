@@ -6,14 +6,14 @@ table.insert(plugins, {
 table.insert(plugins, {
 	"williamboman/mason-lspconfig.nvim",
 	opts = {
-		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "tsserver", "vimls", "taplo" },
+		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "tsserver", "vimls", "taplo", "helm_ls", "yamlls" },
 	},
 })
 
 table.insert(plugins, {
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
 	opts = {
-		ensure_installed = { "stylua" },
+		ensure_installed = { "stylua", "prettier" },
 	},
 })
 
@@ -42,12 +42,25 @@ table.insert(plugins, {
 })
 
 table.insert(after_load, function()
-	require("lspconfig").lua_ls.setup({})
-	require("lspconfig").pylsp.setup({})
-	require("lspconfig").rust_analyzer.setup({})
-	require("lspconfig").tsserver.setup({})
-	require("lspconfig").vimls.setup({})
-	require("lspconfig").taplo.setup({})
+	local lspconfig = require("lspconfig")
+
+	lspconfig.lua_ls.setup({})
+	lspconfig.pylsp.setup({})
+	lspconfig.rust_analyzer.setup({})
+	lspconfig.tsserver.setup({})
+	lspconfig.vimls.setup({})
+	lspconfig.taplo.setup({})
+	lspconfig.helm_ls.setup({
+		settings = {
+			["helm-ls"] = {
+				yamlls = {
+					path = "yaml-language-server",
+				},
+			},
+		},
+	})
+
+	lspconfig.yamlls.setup({})
 
 	vim.opt.completeopt = "menu,menuone,noselect"
 
