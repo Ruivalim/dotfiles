@@ -1,4 +1,5 @@
 if [[ ":$FPATH:" != *":/Users/ruivalim/.zsh/completions:"* ]]; then export FPATH="/Users/ruivalim/.zsh/completions:$FPATH"; fi
+if [[ ":$FPATH:" != *":/home/ruivalim/.zsh/completions:"* ]]; then export FPATH="/home/ruivalim/.zsh/completions:$FPATH"; fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
