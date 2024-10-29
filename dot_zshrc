@@ -1,5 +1,8 @@
-if [[ ":$FPATH:" != *":/Users/ruivalim/.zsh/completions:"* ]]; then export FPATH="/Users/ruivalim/.zsh/completions:$FPATH"; fi
-if [[ ":$FPATH:" != *":/home/ruivalim/.zsh/completions:"* ]]; then export FPATH="/home/ruivalim/.zsh/completions:$FPATH"; fi
+if [[ "$(uname)" == "Linux" ]]; then
+  if [[ ":$FPATH:" != *":/home/ruivalim/.zsh/completions:"* ]]; then export FPATH="/home/ruivalim/.zsh/completions:$FPATH"; fi
+elif [[ "$(uname)" == "Darwin" ]]; then
+  if [[ ":$FPATH:" != *":/Users/ruivalim/.zsh/completions:"* ]]; then export FPATH="/Users/ruivalim/.zsh/completions:$FPATH"; fi
+fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
