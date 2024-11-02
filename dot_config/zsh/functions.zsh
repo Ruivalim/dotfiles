@@ -49,3 +49,8 @@ kpl () {
 	kubectl logs -f "$selected_pod"
 }
 
+update_abi () {
+  current_date=$(date +"%d-%m-%y")
+  abi leaves -f "brew-formula-$current_date"
+  abi cask -f "brew-cask-$current_date"
+}
