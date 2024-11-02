@@ -7,6 +7,6 @@ table.insert(plugins, {
 	},
 })
 
-table.insert(after_load, function()
-	vim.cmd([[colorscheme tokyonight]])
-end)
+--table.insert(after_load, function()
+--	vim.cmd([[colorscheme tokyonight]])
+--end)

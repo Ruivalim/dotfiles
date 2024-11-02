@@ -13,6 +13,7 @@ require("plugins.mundo")
 require("plugins.barbar")
 require("plugins.gitsigns")
 require("plugins.helm")
+require("plugins.rose-pine")
 
 require("lazy").setup(plugins)
 
