@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git fzf colorize aws gitignore history zsh-nvm zsh-autosuggestions)
+plugins=(git fzf colorize aws gitignore argocd azure chezmoi docker docker-compose gitignore zsh-nvm zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
