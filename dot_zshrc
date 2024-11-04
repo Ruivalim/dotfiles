@@ -24,13 +24,14 @@ source ~/.config/zsh/config.zsh
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/functions.zsh
-source ~/.config/zsh/functions.private.zsh
 source ~/.config/zsh/plugins_checker.zsh
+
+autoload -Uz compinit
+compinit
 
 if [ -e ~/.zshrc_paths ]
 then
   source ~/.zshrc_paths
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

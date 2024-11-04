@@ -4,6 +4,8 @@ vim.g.maplocalleader = " "
 vim.api.nvim_set_keymap("n", "<Leader>", ":lua trigger_which_key()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 
 local wk = require("which-key")
 
