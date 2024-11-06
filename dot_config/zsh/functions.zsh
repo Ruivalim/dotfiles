@@ -1,17 +1,23 @@
-kpn() {
-  kubectl get pods --all-namespaces --field-selector spec.nodeName=$1
+khelp () {
+  echo "kgp => kubectl get pod"
+  echo "kdlp => kubectl delete pod "
+  echo "kexp => kubectl exec pod"
+  echo "kdcp => kubectl describe pod"
+  echo "klp => kubectl log -f "
 }
 
-kdp () {
-  error=$1
-  kubectl get pod | grep $1 | awk '{print $1;}' | xargs -I {} kubectl delete pod  {}
+kgp () {
+  kubectl get pod $1
 }
 
-kpe () {
-	_pod=$1
-	_command="${2:-bash}"
-	_container=$3
-	selected_pod=$(kubectl get pod | grep "$_pod" | awk '{print $1;}' | fzf)
+kdlp () {
+  kubectl get pod | awk '{print $1;}' | fzf | xargs -I {} kubectl delete pod  {}
+}
+
+kexp () {
+	_command="${1:-bash}"
+	_container=$2
+	selected_pod=$(kubectl get pod | awk '{print $1;}' | fzf)
 	if [ -z "$selected_pod" ]
 	then
 		echo "No pod selected."
@@ -25,10 +31,8 @@ kpe () {
 	fi
 }
 
-kpd () {
-	_pod=$1
-	_command="${2:-bash}"
-	selected_pod=$(kubectl get pod | grep "$_pod" | awk '{print $1;}' | fzf)
+kdcp () {
+	selected_pod=$(kubectl get pod | awk '{print $1;}' | fzf)
 	if [ -z "$selected_pod" ]
 	then
 		echo "No pod selected."
@@ -37,10 +41,8 @@ kpd () {
 	kubectl describe pod "$selected_pod"
 }
 
-kpl () {
-	_pod=$1
-	_command="${2:-bash}"
-	selected_pod=$(kubectl get pod | grep "$_pod" | awk '{print $1;}' | fzf)
+klp () {
+	selected_pod=$(kubectl get pod | awk '{print $1;}' | fzf)
 	if [ -z "$selected_pod" ]
 	then
 		echo "No pod selected."
