@@ -6,7 +6,7 @@ table.insert(plugins, {
 table.insert(plugins, {
 	"williamboman/mason-lspconfig.nvim",
 	opts = {
-		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "tsserver", "vimls", "taplo", "helm_ls", "yamlls" },
+		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "ts_ls", "vimls", "taplo", "helm_ls", "yamlls" },
 	},
 })
 
@@ -47,7 +47,7 @@ table.insert(after_load, function()
 	lspconfig.lua_ls.setup({})
 	lspconfig.pylsp.setup({})
 	lspconfig.rust_analyzer.setup({})
-	lspconfig.tsserver.setup({})
+	lspconfig.ts_ls.setup({})
 	lspconfig.vimls.setup({})
 	lspconfig.taplo.setup({})
 	lspconfig.helm_ls.setup({
