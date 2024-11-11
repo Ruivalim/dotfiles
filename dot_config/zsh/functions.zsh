@@ -4,6 +4,7 @@ khelp () {
   echo "kexp => kubectl exec pod"
   echo "kdcp => kubectl describe pod"
   echo "klp => kubectl log -f "
+  echo "kgcm => kubectl get configmap -oyaml "
 }
 
 kgp () {
@@ -51,6 +52,16 @@ klp () {
 	kubectl logs -f "$selected_pod"
 }
 
+kgcm () {
+	selected_configmap=$(kubectl get configmap | awk '{print $1;}' | fzf)
+	if [ -z "$selected_configmap" ]
+	then
+		echo "No configmap selected."
+		return 1
+	fi
+	kubectl get configmap "$selected_configmap" -oyaml | bat -l yaml
+}
+
 update_abi () {
   current_date=$(date +"%d-%m-%y")
   abi leaves -f "brew-formula-$current_date"
@@ -72,3 +83,4 @@ load_nvm () {
 for cmd in "${NODE_GLOBALS[@]}"; do
     eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
 done
+
