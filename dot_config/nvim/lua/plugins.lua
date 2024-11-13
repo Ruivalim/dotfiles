@@ -14,6 +14,7 @@ require("plugins.barbar")
 require("plugins.gitsigns")
 require("plugins.helm")
 require("plugins.rose-pine")
+require("plugins.vim-cool")
 
 require("lazy").setup(plugins)
 

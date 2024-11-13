@@ -9,31 +9,18 @@ vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 
 local wk = require("which-key")
 
-wk.register({
-	p = {
-		name = "Plugins",
-		l = { "<cmd>Lazy<cr>", "Lazy" },
-		m = { "<cmd>Mason<cr>", "Mason" },
-	},
-	n = { "<cmd>Oil<cr>", "Oil" },
-	u = { "<cmd>MundoToggle<cr>", "Mundo Toggle" },
-	b = {
-		name = "Buffer",
-		j = { "<cmd>BufferPick<cr>", "Jump" },
-		c = { "<cmd>BufferClose<cr>", "Close" },
-		p = { "<cmd>BufferPrevious<cr>", "Previous" },
-		n = { "<cmd>BufferNext<cr>", "Next" },
-	},
-	f = {
-		name = "File",
-		f = { "<cmd>Telescope find_files<cr>", "Find File" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-	},
-}, {
-	mode = "n",
-	prefix = "<leader>",
-	buffer = nil,
-	silent = true,
-	noremap = true,
-	nowait = true,
+wk.add({
+	{ "<leader>b", group = "Buffer", nowait = true, remap = false },
+	{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close", nowait = true, remap = false },
+	{ "<leader>bj", "<cmd>BufferPick<cr>", desc = "Jump", nowait = true, remap = false },
+	{ "<leader>bn", "<cmd>BufferNext<cr>", desc = "Next", nowait = true, remap = false },
+	{ "<leader>bp", "<cmd>BufferPrevious<cr>", desc = "Previous", nowait = true, remap = false },
+	{ "<leader>f", group = "File", nowait = true, remap = false },
+	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", nowait = true, remap = false },
+	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
+	{ "<leader>n", "<cmd>Oil<cr>", desc = "Oil", nowait = true, remap = false },
+	{ "<leader>p", group = "Plugins", nowait = true, remap = false },
+	{ "<leader>pl", "<cmd>Lazy<cr>", desc = "Lazy", nowait = true, remap = false },
+	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason", nowait = true, remap = false },
+	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Mundo Toggle", nowait = true, remap = false },
 })
