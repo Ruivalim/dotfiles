@@ -1,20 +1,8 @@
-# Nushell Config File
-#
-# version = "0.100.0"
-
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
 let dark_theme = {
-    # color for nushell primitives
     separator: white
     leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
     header: green_bold
     empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'light_cyan' } else { 'light_gray' } }
     bool: light_cyan
     int: white
     filesize: cyan
@@ -46,7 +34,6 @@ let dark_theme = {
     shape_filepath: cyan
     shape_flag: blue_bold
     shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
     shape_garbage: { fg: white bg: red attr: b }
     shape_glob_interpolation: cyan_bold
     shape_globpattern: cyan_bold
@@ -74,14 +61,10 @@ let dark_theme = {
 }
 
 let light_theme = {
-    # color for nushell primitives
     separator: dark_gray
     leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
     header: green_bold
     empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'dark_cyan' } else { 'dark_gray' } }
     bool: dark_cyan
     int: dark_gray
     filesize: cyan_bold
@@ -113,7 +96,6 @@ let light_theme = {
     shape_filepath: cyan
     shape_flag: blue_bold
     shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
     shape_garbage: { fg: white bg: red attr: b }
     shape_glob_interpolation: cyan_bold
     shape_globpattern: cyan_bold
@@ -175,17 +157,11 @@ $env.config = {
 
     error_style: "fancy" # "fancy" or "plain" for screen reader-friendly error messages
 
-    # Whether an error message should be printed if an error of a certain kind is triggered.
     display_errors: {
         exit_code: false # assume the external command prints an error message
-        # Core dump errors are always printed, and SIGPIPE never triggers an error.
-        # The setting below controls message printing for termination by all other signals.
         termination_signal: true
     }
 
-    # datetime_format determines what a datetime rendered in the shell would look like.
-    # Behavior without this configuration point will be to "humanize" the datetime display,
-    # showing something like "a day ago."
     datetime_format: {
         # normal: '%a, %d %b %Y %H:%M:%S %z'    # shows up in displays of variables or other datetime's outside of tables
         # table: '%m/%d/%y %I:%M:%S%p'          # generally shows up in tabular outputs such as ls. commenting this out will change it to the default human readable datetime format
@@ -303,8 +279,6 @@ $env.config = {
     }
 
     menus: [
-        # Configuration for default nushell menus
-        # Note the lack of source parameter
         {
             name: completion_menu
             only_buffer_difference: false
@@ -898,4 +872,6 @@ $env.config = {
     ]
 }
 
-use ~/.cache/starship/init.nu
+use ./functions.nu *
+use ./alias.nu *
+source ~/.oh-my-posh.nu
