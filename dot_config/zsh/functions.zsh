@@ -62,6 +62,16 @@ kgcm () {
 	kubectl get configmap "$selected_configmap" -oyaml | bat -l yaml
 }
 
+kgs () {
+	selected_secret=$(kubectl get secret | awk '{print $1;}' | fzf)
+	if [ -z "$selected_secret" ]
+	then
+		echo "No secret selected."
+		return 1
+	fi
+	kubectl get secret "$selected_secret" -oyaml | bat -l yaml
+}
+
 update_abi () {
   current_date=$(date +"%d-%m-%y")
   abi leaves -f "brew-formula-$current_date"
