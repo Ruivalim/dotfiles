@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.api.nvim_set_keymap("n", "<Leader>", ":lua trigger_which_key()<CR>", { noremap = true, silent = true })
-
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
@@ -22,5 +20,5 @@ wk.add({
 	{ "<leader>p", group = "Plugins", nowait = true, remap = false },
 	{ "<leader>pl", "<cmd>Lazy<cr>", desc = "Lazy", nowait = true, remap = false },
 	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason", nowait = true, remap = false },
-	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Mundo Toggle", nowait = true, remap = false },
+	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Undo show tree", nowait = true, remap = false },
 })
