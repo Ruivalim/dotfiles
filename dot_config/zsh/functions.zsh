@@ -5,6 +5,7 @@ khelp () {
   echo "kdcp => kubectl describe pod"
   echo "klp => kubectl log -f "
   echo "kgcm => kubectl get configmap -oyaml "
+  echo "kgs => kubectl get secret -oyaml "
 }
 
 kgp () {
@@ -63,13 +64,36 @@ kgcm () {
 }
 
 kgs () {
+	_command="${1:-bat -l yaml}"
 	selected_secret=$(kubectl get secret | awk '{print $1;}' | fzf)
 	if [ -z "$selected_secret" ]
 	then
 		echo "No secret selected."
 		return 1
 	fi
-	kubectl get secret "$selected_secret" -oyaml | bat -l yaml
+  kubectl get secret "$selected_secret" -oyaml | eval "$_command" 
+}
+
+kgaz () {
+	_command="${1:-bat -l yaml}"
+	selected_secret=$(kubectl get azurekeyvaultsecrets | awk '{print $1;}' | fzf)
+	if [ -z "$selected_secret" ]
+	then
+		echo "No secret selected."
+		return 1
+	fi
+  kubectl get azurekeyvaultsecrets "$selected_secret" -oyaml | eval "$_command" 
+}
+
+kdaz () {
+	_command="${1:-bat -l yaml}"
+	selected_secret=$(kubectl get azurekeyvaultsecrets | awk '{print $1;}' | fzf)
+	if [ -z "$selected_secret" ]
+	then
+		echo "No secret selected."
+		return 1
+	fi
+  kubectl describe azurekeyvaultsecrets "$selected_secret" | eval "$_command" 
 }
 
 update_abi () {
