@@ -1,4 +1,6 @@
-khelp () {
+zhelp () {
+  echo "c => cat file | pbcopy"
+  echo "update_abi => abi leaves && abi cask"
   echo "kgp => kubectl get pod"
   echo "kdlp => kubectl delete pod "
   echo "kexp => kubectl exec pod"
@@ -6,6 +8,10 @@ khelp () {
   echo "klp => kubectl log -f "
   echo "kgcm => kubectl get configmap -oyaml "
   echo "kgs => kubectl get secret -oyaml "
+}
+
+c () {
+  cat $1 | pbcopy
 }
 
 kgp () {
