@@ -1,4 +1,8 @@
-alias ls="lsd -la"
+if command -v lsd &> /dev/null; then
+  alias ls="lsd -la"
+else
+  alias ls="ls -lah"
+fi
 alias work="cd ~/work"
 alias finder="open -a Finder ."
 if [ $TERM = "xterm-kitty" ]; then
