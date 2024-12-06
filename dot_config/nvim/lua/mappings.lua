@@ -20,5 +20,7 @@ wk.add({
 	{ "<leader>p", group = "Plugins", nowait = true, remap = false },
 	{ "<leader>pl", "<cmd>Lazy<cr>", desc = "Lazy", nowait = true, remap = false },
 	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason", nowait = true, remap = false },
-	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Undo show tree", nowait = true, remap = false },
+	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Mundo Toggle", nowait = true, remap = false },
+	{ "<leader>t", group = "Terminal", nowait = true, remap = false },
+	{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", nowait = true, remap = false },
 })

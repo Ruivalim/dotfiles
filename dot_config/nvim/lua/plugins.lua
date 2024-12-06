@@ -16,9 +16,8 @@ require("plugins.helm")
 require("plugins.rose-pine")
 require("plugins.vim-cool")
 require("plugins.treesitter")
-require("plugins.nvim-nu")
-require("plugins.editorconfig")
-require("plugins.copilot")
+require("plugins.yaml")
+require("plugins.toggleterm")
 
 require("lazy").setup(plugins)
 

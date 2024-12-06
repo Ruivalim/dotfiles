@@ -2,5 +2,6 @@
     "workbench.colorTheme": "Rosé Pine",
     "editor.fontFamily": "'Cartograph CF', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": false,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "continue.enableTabAutocomplete": true
 }

@@ -38,3 +38,10 @@ fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ruivalim/.cache/lm-studio/bin"
+
+# bun completions
+[ -s "/Users/ruivalim/.bun/_bun" ] && source "/Users/ruivalim/.bun/_bun"
+
+# bum
+export BUM_INSTALL="$HOME/.bum"
+export PATH="$BUM_INSTALL/bin:$PATH"
