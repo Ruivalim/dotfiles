@@ -22,6 +22,7 @@ require("plugins.coerce")
 require("plugins.coop")
 require("plugins.smear-cursor")
 require("plugins.flash")
+require("plugins.coc")
 
 require("lazy").setup(plugins)
 

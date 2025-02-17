@@ -10,7 +10,10 @@ vim.opt.showcmd = true
 vim.opt.laststatus = 2
 vim.opt.autowrite = true
 vim.opt.autoread = true
-
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.updatetime = 300
+vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
 
 if uname == "Darwin" then
