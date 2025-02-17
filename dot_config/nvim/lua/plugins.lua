@@ -18,6 +18,10 @@ require("plugins.vim-cool")
 require("plugins.treesitter")
 require("plugins.yaml")
 require("plugins.toggleterm")
+require("plugins.coerce")
+require("plugins.coop")
+require("plugins.smear-cursor")
+require("plugins.flash")
 
 require("lazy").setup(plugins)
 

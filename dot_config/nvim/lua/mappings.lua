@@ -1,9 +1,18 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- <c-p> on oil to preview file
+-- :vplit to vertical split
+-- :split to horizontal split
+-- <c-w> + hjkl to move between splits
+-- <c-w> + +-<> to resize splits
+
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", {})
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", {})
+vim.api.nvim_set_keymap("n", "s", '<cmd>lua require("flash").jump()<cr>', {})
 
 local wk = require("which-key")
 
