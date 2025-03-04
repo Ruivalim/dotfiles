@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- <c-p> on oil to preview file
+-- ciw delete current word
 -- :vplit to vertical split
 -- :split to horizontal split
 -- <c-w> + hjkl to move between splits

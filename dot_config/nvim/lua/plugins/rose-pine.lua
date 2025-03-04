@@ -3,6 +3,6 @@ table.insert(plugins, {
 	name = "rose-pine",
 })
 
-table.insert(after_load, function()
-	vim.cmd([[colorscheme rose-pine]])
-end)
+-- table.insert(after_load, function()
+-- 	vim.cmd([[colorscheme rose-pine]])
+-- end)
