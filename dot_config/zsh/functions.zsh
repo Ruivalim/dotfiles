@@ -5,6 +5,7 @@ zhelp () {
   echo "kdlp => kubectl delete pod "
   echo "kexp => kubectl exec pod"
   echo "kdcp => kubectl describe pod"
+  echo "kdcn => kubectl describe node"
   echo "klp => kubectl log -f "
   echo "kgcm => kubectl get configmap -oyaml "
   echo "kgs => kubectl get secret -oyaml "
@@ -37,6 +38,17 @@ kexp () {
 	else
 		kubectl exec -it "$selected_pod" -- $_command
 	fi
+}
+
+kdcn () {
+	selected_pod=$(kubectl get node | fzf)
+	if [ -z "$selected_pod" ]
+	then
+		echo "No pod selected."
+		return 1
+	fi
+  selected_pod=$(echo $selected_pod | awk '{print $1;}' )
+	kubectl describe node "$selected_pod"
 }
 
 kdcp () {
