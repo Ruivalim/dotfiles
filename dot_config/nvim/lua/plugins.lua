@@ -26,6 +26,7 @@ require("plugins.neoformat")
 require("plugins.fzf")
 require("plugins.gruvbox")
 require("plugins.copilot")
+require("plugins.nvim-search-and-replace")
 
 require("lazy").setup(plugins)
 

@@ -24,7 +24,15 @@ table.insert(plugins, {
 table.insert(after_load, function()
 	local lspconfig = require("lspconfig")
 
-	lspconfig.lua_ls.setup({})
+	lspconfig.lua_ls.setup({
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+			},
+		},
+	})
 	lspconfig.pylsp.setup({})
 	lspconfig.rust_analyzer.setup({})
 	lspconfig.ts_ls.setup({})

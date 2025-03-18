@@ -58,6 +58,7 @@ local wk = require("which-key")
 wk.add({
 	{ "<leader>b", group = "Buffer", nowait = true, remap = false },
 	{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close", nowait = true, remap = false },
+	{ "<leader>ba", "<cmd>BufferCloseAllButCurrent<cr>", desc = "Close All But Current", nowait = true, remap = false },
 	{ "<leader>bj", "<cmd>BufferPick<cr>", desc = "Jump", nowait = true, remap = false },
 	{ "<leader>bn", "<cmd>BufferNext<cr>", desc = "Next", nowait = true, remap = false },
 	{ "<leader>bp", "<cmd>BufferPrevious<cr>", desc = "Previous", nowait = true, remap = false },
@@ -71,4 +72,6 @@ wk.add({
 	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Mundo Toggle", nowait = true, remap = false },
 	{ "<leader>t", group = "Terminal", nowait = true, remap = false },
 	{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", nowait = true, remap = false },
+	{ "<leader>s", group = "Search", nowait = true, remap = false },
+	{ "<leader>sr", "<cmd>SReplaceAndSave<cr>", desc = "Search, Replace, Save", nowait = true, remap = false },
 })
