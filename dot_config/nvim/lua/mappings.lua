@@ -54,7 +54,7 @@ end
 vim.api.nvim_set_keymap("n", "K", "<CMD>lua _G.show_docs()<CR>", { silent = true })
 
 local wk = require("which-key")
-
+local global_note = require("global-note")
 wk.add({
 	{ "<leader>b", group = "Buffer", nowait = true, remap = false },
 	{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close", nowait = true, remap = false },
@@ -65,7 +65,7 @@ wk.add({
 	{ "<leader>f", group = "File", nowait = true, remap = false },
 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", nowait = true, remap = false },
 	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
-	{ "<leader>n", "<cmd>Oil<cr>", desc = "Oil", nowait = true, remap = false },
+	{ "<leader>o", "<cmd>Oil<cr>", desc = "Oil", nowait = true, remap = false },
 	{ "<leader>p", group = "Plugins", nowait = true, remap = false },
 	{ "<leader>pl", "<cmd>Lazy<cr>", desc = "Lazy", nowait = true, remap = false },
 	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason", nowait = true, remap = false },
@@ -74,4 +74,32 @@ wk.add({
 	{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", nowait = true, remap = false },
 	{ "<leader>s", group = "Search", nowait = true, remap = false },
 	{ "<leader>sr", "<cmd>SReplaceAndSave<cr>", desc = "Search, Replace, Save", nowait = true, remap = false },
+	{ "<leader>n", group = "Notes", nowait = true, remap = false },
+	{
+		"<leader>ng",
+		function()
+			global_note.toggle_note()
+		end,
+		desc = "Global Notes",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>np",
+		function()
+			global_note.toggle_note("project_local")
+		end,
+		desc = "Global Notes",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>nv",
+		function()
+			global_note.toggle_note("vim")
+		end,
+		desc = "Global Notes",
+		nowait = true,
+		remap = false,
+	},
 })

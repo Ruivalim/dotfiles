@@ -27,6 +27,9 @@ require("plugins.fzf")
 require("plugins.gruvbox")
 require("plugins.copilot")
 require("plugins.nvim-search-and-replace")
+require("plugins.precognition")
+require("plugins.auto-session")
+require("plugins.global-note")
 
 require("lazy").setup(plugins)
 

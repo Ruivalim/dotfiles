@@ -15,6 +15,7 @@ vim.opt.writebackup = false
 vim.opt.updatetime = 300
 vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
+vim.opt.clipboard = "unnamedplus"
 
 if uname == "Darwin" then
 	vim.opt.undodir = "/Users/ruivalim/.undo_history"
