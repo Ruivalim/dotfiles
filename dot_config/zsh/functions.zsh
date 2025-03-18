@@ -9,10 +9,17 @@ zhelp () {
   echo "klp => kubectl log -f "
   echo "kgcm => kubectl get configmap -oyaml "
   echo "kgs => kubectl get secret -oyaml "
+  echo "kdebug => kubectl debug"
 }
 
 c () {
   cat $1 | pbcopy
+}
+
+kdebug () {
+  kubectl run debug-pod --image=praqma/network-multitool --restart=Never --command -- /bin/sh -c "while true; do sleep 3600; done" 
+  sleep 4
+  kubectl exec -it debug-pod -- /bin/sh
 }
 
 kgp () {
@@ -20,18 +27,19 @@ kgp () {
 }
 
 kdlp () {
-  kubectl get pod | awk '{print $1;}' | fzf | xargs -I {} kubectl delete pod  {}
+  kubectl get pod | fzf | awk '{print $1;}' | xargs -I {} kubectl delete pod  {}
 }
 
 kexp () {
 	_command="${1:-bash}"
 	_container=$2
-	selected_pod=$(kubectl get pod | awk '{print $1;}' | fzf)
+	selected_pod=$(kubectl get pod | fzf)
 	if [ -z "$selected_pod" ]
 	then
 		echo "No pod selected."
 		return 1
 	fi
+	selected_pod=$(echo $selected_pod | awk '{print $1;}' )
 	if [ -n "$_container" ]
 	then
 		kubectl exec -it "$selected_pod" -c "$_container" -- $_command
@@ -47,27 +55,29 @@ kdcn () {
 		echo "No pod selected."
 		return 1
 	fi
-  selected_pod=$(echo $selected_pod | awk '{print $1;}' )
+	selected_pod=$(echo $selected_pod | awk '{print $1;}' )
 	kubectl describe node "$selected_pod"
 }
 
 kdcp () {
-	selected_pod=$(kubectl get pod | awk '{print $1;}' | fzf)
+	selected_pod=$(kubectl get pod | fzf)
 	if [ -z "$selected_pod" ]
 	then
 		echo "No pod selected."
 		return 1
 	fi
+	selected_pod=$(echo $selected_pod | awk '{print $1;}' )
 	kubectl describe pod "$selected_pod"
 }
 
 klp () {
-	selected_pod=$(kubectl get pod | awk '{print $1;}' | fzf)
+	selected_pod=$(kubectl get pod | fzf)
 	if [ -z "$selected_pod" ]
 	then
 		echo "No pod selected."
 		return 1
 	fi
+	selected_pod=$(echo $selected_pod | awk '{print $1;}' )
 	kubectl logs -f "$selected_pod"
 }
 
@@ -147,3 +157,11 @@ for cmd in "${NODE_GLOBALS[@]}"; do
     eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
 done
 fi
+
+edit_nvim () {
+  nvim ~/.config/nvim
+}
+
+edit_zsh () {
+  nvim ~/.config/zsh
+}

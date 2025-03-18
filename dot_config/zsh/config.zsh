@@ -5,3 +5,5 @@ export EDITOR="nvim"
 bindkey -e
 bindkey '\e\e[C' forward-word
 bindkey '\e\e[D' backward-word
+
+export TERM=xterm-256color
