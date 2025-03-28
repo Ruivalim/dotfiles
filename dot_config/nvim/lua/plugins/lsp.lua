@@ -6,7 +6,18 @@ table.insert(plugins, {
 table.insert(plugins, {
 	"williamboman/mason-lspconfig.nvim",
 	opts = {
-		ensure_installed = { "lua_ls", "pylsp", "rust_analyzer", "ts_ls", "vimls", "taplo", "helm_ls", "yamlls", "ols" },
+		ensure_installed = {
+			"lua_ls",
+			"pylsp",
+			"rust_analyzer",
+			"ts_ls",
+			"vimls",
+			"taplo",
+			"helm_ls",
+			"yamlls",
+			"ols",
+			"svelte",
+		},
 	},
 })
 
@@ -47,7 +58,7 @@ table.insert(after_load, function()
 			},
 		},
 	})
-
+	lspconfig.svelte.setup({})
 	lspconfig.yamlls.setup({})
 
 	vim.opt.completeopt = "menu,menuone,noselect"
