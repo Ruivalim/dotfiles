@@ -13,7 +13,38 @@ zhelp () {
 }
 
 c () {
-  cat $1 | pbcopy
+  if [ ! -f "$1" ]; then
+    echo "File not found: $1"
+    return 1
+  fi
+
+  case "$(uname -s)" in
+    Darwin)
+      cat "$1" | pbcopy
+      ;;
+    Linux)
+      if command -v wl-copy &> /dev/null; then
+        cat "$1" | wl-copy
+        echo "Copied $1 to clipboard (Wayland)"
+      elif command -v xclip &> /dev/null; then
+        cat "$1" | xclip -selection clipboard
+        echo "Copied $1 to clipboard (X11)"
+      else
+        echo "Error: Neither wl-copy nor xclip found."
+        echo "Install: sudo apt install wl-clipboard  # or xclip"
+        return 1
+      fi
+      ;;
+    CYGWIN*|MINGW*|MSYS*)
+      # Windows (Git Bash, WSL, etc.)
+      cat "$1" | clip.exe
+      echo "Copied $1 to clipboard (Windows)"
+      ;;
+    *)
+      echo "Unsupported OS: $(uname -s)"
+      return 1
+      ;;
+  esac
 }
 
 kdebug () {
