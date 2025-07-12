@@ -3,43 +3,86 @@
     "position": "top",
     "height": 30,
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "battery", "tray"],
+    "modules-center": ["privacy", "clock",  "memory", "cpu"],
+    "modules-right": ["tray", "wireplumber", "bluetooth", "network"],
     "hyprland/workspaces": {
-        "format": "{name}"
+      "format": "{name}: <span>{icon}</span>",
+      "format-icons": {
+        "1": "\uf269",
+        "2": "\uf6e2",
+        "3": "\uf121",
+        "4": "\uf11c",
+        "5": "\uf1bc",
+        "default": "\uf2d0"
+      },
     },
     "clock": {
         "format": "{:%H:%M   %e %b}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%d/%m/%Y}"
     },
-    "battery": {
-        "bat": "BAT0",
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
+        "format-wifi": "<span>\uf1eb</span> ({signalStrength}%) {ipaddr}",
+        "format-ethernet": "<span>\uf6ff</span> {ipaddr}",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "networkmanager_dmenu"
     },
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+    "wireplumber": {
+        "format": "<span>{icon}</span> {volume}%",
+        "format-muted": "<span>\uf6a9</span>",
+        "on-click": "pavucontrol",
+        "format-icons": ["\uf026", "\uf027", "\uf028"]
+    },
+    "memory": {
+        "interval": 30,
+        "format": "<span>\uf538</span> {}%",
+        "max-length": 10
+    },
+    "cpu": {
+      "interval": 10,
+      "format": "<span>\uf2db</span> {}%",
+      "max-length": 10
+    },
+    "bluetooth": {
+      "format": "<span>\uf294</span> {status}",
+      "format-disabled": "",
+      "format-connected": "<span>\uf294</span> {num_connections} connected",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "on-click": "blueman-manager"
+    },
+    "privacy": {
+      "icon-spacing": 4,
+      "icon-size": 18,
+      "transition-duration": 250,
+      "modules": [
+        {
+          "type": "screenshare",
+          "tooltip": true,
+          "tooltip-icon-size": 24
         },
-        "on-click": "pavucontrol"
-    }
+        {
+          "type": "audio-out",
+          "tooltip": true,
+          "tooltip-icon-size": 24
+        },
+        {
+          "type": "audio-in",
+          "tooltip": true,
+          "tooltip-icon-size": 24
+        }
+      ],
+      "ignore-monitor": true,
+      "ignore": [
+        {
+          "type": "audio-in",
+          "name": "cava"
+        },
+        {
+          "type": "screenshare",
+          "name": "obs"
+        }
+      ]
+    },
 }

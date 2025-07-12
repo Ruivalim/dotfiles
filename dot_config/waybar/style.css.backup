@@ -1,0 +1,47 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  min-height: 0;
+}
+
+span {
+  font-family: "Font Awesome 6 Free";
+}
+
+window#waybar {
+  background-color: rgba(43, 48, 59, 0.8);
+  border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+  color: #ffffff;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  color: #ffffff;
+  border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.active {
+  background-color: #64727d;
+  border-bottom: 3px solid #ffffff;
+}
+
+#clock,
+#network,
+#tray {
+  padding: 0 10px;
+  margin: 0 5px;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
