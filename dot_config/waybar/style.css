@@ -1,6 +1,3 @@
-/* Modern Purple Waybar Theme with GTK Variables */
-
-/* Color Variables */
 @define-color primary_bg rgba(30, 20, 60, 0.95);
 @define-color secondary_bg rgba(45, 30, 75, 0.95);
 @define-color accent_color rgb(138, 90, 220);
@@ -30,13 +27,11 @@
   transition: all 0.3s ease;
 }
 
-/* Font Awesome icons */
 span {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
 }
 
-/* Main window styling */
 window#waybar {
   background: linear-gradient(
     135deg,
@@ -49,7 +44,6 @@ window#waybar {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Workspaces styling */
 #workspaces {
   margin: 0 8px;
   padding: 0;
@@ -93,7 +87,6 @@ window#waybar {
   animation: urgentPulse 2s infinite;
 }
 
-/* Center modules */
 #privacy,
 #clock,
 #memory,
@@ -116,7 +109,6 @@ window#waybar {
   box-shadow: 0 6px 16px @accent_hover;
 }
 
-/* Clock special styling */
 #clock {
   background: linear-gradient(
     135deg,
@@ -128,7 +120,6 @@ window#waybar {
   letter-spacing: 0.5px;
 }
 
-/* Right modules */
 #tray,
 #wireplumber,
 #bluetooth,
@@ -151,7 +142,6 @@ window#waybar {
   box-shadow: 0 4px 12px @accent_hover;
 }
 
-/* Network module states */
 #network.disconnected {
   background: rgba(231, 76, 60, 0.2);
   color: @urgent_color;
@@ -166,7 +156,6 @@ window#waybar {
   color: @info_color;
 }
 
-/* Audio module */
 #wireplumber {
   color: @warning_color;
 }
@@ -176,7 +165,6 @@ window#waybar {
   background: rgba(127, 140, 141, 0.1);
 }
 
-/* Bluetooth module */
 #bluetooth {
   color: @info_color;
 }
@@ -190,7 +178,6 @@ window#waybar {
   color: @success_color;
 }
 
-/* System monitoring modules */
 #memory {
   color: @warning_color;
 }
@@ -199,7 +186,6 @@ window#waybar {
   color: @accent_secondary;
 }
 
-/* Memory/CPU warning states */
 #memory.warning {
   background: rgba(243, 156, 18, 0.2);
   color: @warning_color;
@@ -214,12 +200,10 @@ window#waybar {
   animation: criticalPulse 1.5s infinite;
 }
 
-/* Privacy module */
 #privacy {
   color: @success_color;
 }
 
-/* Tray */
 #tray {
   background: rgba(255, 255, 255, 0.06);
 }
@@ -237,7 +221,6 @@ window#waybar {
   animation: attentionBlink 1s infinite;
 }
 
-/* Animations */
 @keyframes urgentPulse {
   0% {
     box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
@@ -274,7 +257,6 @@ window#waybar {
   }
 }
 
-/* Tooltip styling */
 tooltip {
   background: @primary_bg;
   color: @text_primary;
@@ -289,7 +271,6 @@ tooltip label {
   color: @text_primary;
 }
 
-/* Scrollbar styling for tooltips */
 scrollbar {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 6px;
