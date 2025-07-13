@@ -89,7 +89,7 @@ wk.add({
 		function()
 			global_note.toggle_note("project_local")
 		end,
-		desc = "Global Notes",
+		desc = "Project Notes",
 		nowait = true,
 		remap = false,
 	},
@@ -98,7 +98,7 @@ wk.add({
 		function()
 			global_note.toggle_note("vim")
 		end,
-		desc = "Global Notes",
+		desc = "Vim Notes",
 		nowait = true,
 		remap = false,
 	},

@@ -1,0 +1,203 @@
+/* ~/.config/wofi/style.css */
+
+/* Color definitions matching your waybar theme */
+@define-color primary_bg rgba(30, 20, 60, 0.95);
+@define-color secondary_bg rgba(45, 30, 75, 0.95);
+@define-color accent_color rgb(138, 90, 220);
+@define-color accent_hover rgba(138, 90, 220, 0.2);
+@define-color accent_active rgba(138, 90, 220, 0.4);
+@define-color text_primary rgb(232, 227, 240);
+@define-color text_secondary rgb(184, 169, 217);
+@define-color text_muted rgb(127, 140, 141);
+@define-color border_color rgba(138, 90, 220, 0.3);
+@define-color border_hover rgba(138, 90, 220, 0.4);
+@define-color module_bg rgba(255, 255, 255, 0.05);
+@define-color module_hover rgba(138, 90, 220, 0.15);
+@define-color accent_secondary rgb(170, 39, 153);
+
+/* Main window */
+window {
+  margin: 0;
+  border: 2px solid @border_color;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    @primary_bg 0%,
+    @secondary_bg 50%,
+    rgba(25, 15, 50, 0.95) 100%
+  );
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  font-family:
+    "JetBrains Mono", "Roboto", "SF Pro Display", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Outer container */
+#outer-box {
+  margin: 0;
+  padding: 8px;
+  border: none;
+  background: transparent;
+}
+
+/* Input field */
+#input {
+  margin: 8px 12px 12px 12px;
+  padding: 12px 16px;
+  border: 2px solid @border_color;
+  border-radius: 10px;
+  background: @module_bg;
+  color: @text_primary;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+#input:focus {
+  border-color: @accent_color;
+  background: @module_hover;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 2px @accent_hover;
+}
+
+/* Inner container */
+#inner-box {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+}
+
+/* Scrollbar */
+#scroll {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Items container */
+#text {
+  margin: 0;
+  padding: 12px 16px;
+  border: none;
+  color: @text_secondary;
+  font-size: 13px;
+  font-weight: 500;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Individual entry */
+#entry {
+  border: none;
+  border-radius: 8px;
+  margin: 2px 8px;
+  padding: 0;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+#entry:selected {
+  background: linear-gradient(135deg, @accent_color 0%, @accent_secondary 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px @accent_active;
+}
+
+#entry:selected #text {
+  color: @text_primary;
+  font-weight: 600;
+}
+
+#entry:hover {
+  background: @accent_hover;
+  border: 1px solid @border_hover;
+  box-shadow: 0 4px 12px @accent_hover;
+}
+
+#entry:hover #text {
+  color: @text_primary;
+}
+
+/* Image/Icon styling */
+#img {
+  margin: 0;
+  padding: 4px;
+  border: none;
+  background: transparent;
+}
+
+/* No results message */
+#entry:only-child {
+  color: @text_muted;
+  font-style: italic;
+}
+
+/* Custom scrollbar */
+scrollbar {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  margin: 4px;
+  border: none;
+}
+
+scrollbar slider {
+  background: @accent_color;
+  border-radius: 6px;
+  opacity: 0.6;
+  border: none;
+  min-height: 20px;
+  transition: all 0.3s ease;
+}
+
+scrollbar slider:hover {
+  opacity: 0.8;
+  background: @accent_secondary;
+}
+
+/* Button styling for wofi modes */
+button {
+  border: none;
+  border-radius: 8px;
+  background: @module_bg;
+  color: @text_secondary;
+  padding: 8px 12px;
+  margin: 2px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: @accent_hover;
+  color: @text_primary;
+  border: 1px solid @border_hover;
+}
+
+button:active,
+button:checked {
+  background: linear-gradient(135deg, @accent_color 0%, @accent_secondary 100%);
+  color: @text_primary;
+  box-shadow: 0 4px 15px @accent_active;
+}
+
+/* Tooltip */
+tooltip {
+  background: @primary_bg;
+  color: @text_primary;
+  border: 1px solid @border_color;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Placeholder text */
+::placeholder {
+  color: @text_muted;
+  font-style: italic;
+}

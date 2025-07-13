@@ -122,7 +122,9 @@ window#waybar {
 
 #tray,
 #wireplumber,
-#bluetooth,
+#custom-bluetooth,
+#custom-dunst,
+#custom-tailscale,
 #network {
   padding: 6px 14px;
   margin: 4px 2px;
@@ -135,7 +137,9 @@ window#waybar {
 
 #tray:hover,
 #wireplumber:hover,
-#bluetooth:hover,
+#custom-bluetooth:hover,
+#custom-dunst:hover,
+#custom-tailscale:hover,
 #network:hover {
   background: @module_hover;
   border-color: @border_color;
@@ -165,16 +169,16 @@ window#waybar {
   background: rgba(127, 140, 141, 0.1);
 }
 
-#bluetooth {
+#custom-bluetooth {
   color: @info_color;
 }
 
-#bluetooth.disabled {
+#custom-bluetooth.disabled {
   color: @text_muted;
   background: rgba(127, 140, 141, 0.1);
 }
 
-#bluetooth.connected {
+#custom-bluetooth.connected {
   color: @success_color;
 }
 

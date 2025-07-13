@@ -4,7 +4,7 @@ else
   alias ls="ls -lah"
 fi
 alias work="cd ~/work"
-alias config="cd ~/.config"
+alias config="nvim ~/.config"
 alias finder="open -a Finder ."
 if [ $TERM = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
