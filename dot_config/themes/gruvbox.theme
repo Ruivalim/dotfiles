@@ -1,0 +1,79 @@
+# Gruvbox Dark Theme Configuration
+# Based on the original Gruvbox color scheme
+
+# Gruvbox Dark colors
+BASE="#282828"
+SURFACE="#3c3836"
+OVERLAY="#504945"
+MUTED="#665c54"
+SUBTLE="#bdae93"
+TEXT="#ebdbb2"
+LOVE="#fb4934"
+GOLD="#fabd2f"
+ROSE="#fe8019"
+PINE="#458588"
+FOAM="#8ec07c"
+IRIS="#d3869b"
+HIGHLIGHT_LOW="#32302f"
+HIGHLIGHT_MED="#45403d"
+HIGHLIGHT_HIGH="#5a524c"
+
+# Application-specific mappings
+# Ghostty
+GHOSTTY_BG="$BASE"
+GHOSTTY_FG="$TEXT"
+GHOSTTY_SELECTION_BG="$TEXT"
+GHOSTTY_SELECTION_FG="$SURFACE"
+
+# Waybar
+WAYBAR_PRIMARY_BG="rgba(40, 40, 40, 0.95)"        # BASE with alpha
+WAYBAR_SECONDARY_BG="rgba(60, 56, 54, 0.95)"      # SURFACE with alpha
+WAYBAR_ACCENT_COLOR="$IRIS"                        # d3869b
+WAYBAR_ACCENT_HOVER="rgba(211, 134, 155, 0.2)"    # IRIS with alpha
+WAYBAR_ACCENT_ACTIVE="rgba(211, 134, 155, 0.4)"   # IRIS with alpha
+WAYBAR_TEXT_PRIMARY="$TEXT"                        # ebdbb2
+WAYBAR_TEXT_SECONDARY="$SUBTLE"                    # bdae93
+WAYBAR_TEXT_MUTED="$MUTED"                         # 665c54
+WAYBAR_BORDER_COLOR="rgba(211, 134, 155, 0.3)"    # IRIS with alpha
+WAYBAR_BORDER_HOVER="rgba(211, 134, 155, 0.4)"    # IRIS with alpha
+WAYBAR_MODULE_BG="rgba(235, 219, 178, 0.05)"      # TEXT with alpha
+WAYBAR_MODULE_HOVER="rgba(211, 134, 155, 0.15)"   # IRIS with alpha
+WAYBAR_URGENT_COLOR="$LOVE"                        # fb4934
+WAYBAR_WARNING_COLOR="$GOLD"                       # fabd2f
+WAYBAR_SUCCESS_COLOR="$FOAM"                       # 8ec07c
+WAYBAR_INFO_COLOR="$PINE"                          # 458588
+WAYBAR_ACCENT_SECONDARY="$ROSE"                    # fe8019
+
+# Wofi (uses same colors as Waybar for consistency)
+WOFI_PRIMARY_BG="$WAYBAR_PRIMARY_BG"
+WOFI_SECONDARY_BG="$WAYBAR_SECONDARY_BG"
+WOFI_ACCENT_COLOR="$WAYBAR_ACCENT_COLOR"
+WOFI_ACCENT_HOVER="$WAYBAR_ACCENT_HOVER"
+WOFI_ACCENT_ACTIVE="$WAYBAR_ACCENT_ACTIVE"
+WOFI_TEXT_PRIMARY="$WAYBAR_TEXT_PRIMARY"
+WOFI_TEXT_SECONDARY="$WAYBAR_TEXT_SECONDARY"
+WOFI_TEXT_MUTED="$WAYBAR_TEXT_MUTED"
+WOFI_BORDER_COLOR="$WAYBAR_BORDER_COLOR"
+WOFI_BORDER_HOVER="$WAYBAR_BORDER_HOVER"
+WOFI_MODULE_BG="$WAYBAR_MODULE_BG"
+WOFI_MODULE_HOVER="$WAYBAR_MODULE_HOVER"
+WOFI_ACCENT_SECONDARY="$WAYBAR_ACCENT_SECONDARY"
+
+# Dunst
+DUNST_BACKGROUND="$BASE"         # 282828
+DUNST_FOREGROUND="$TEXT"         # ebdbb2
+DUNST_FRAME_COLOR="$IRIS"        # d3869b
+DUNST_CRITICAL_FRAME="$LOVE"     # fb4934
+DUNST_WARNING_FRAME="$GOLD"      # fabd2f
+
+# Hyprland
+HYPR_ACTIVE_BORDER="$IRIS"       # d3869b
+HYPR_INACTIVE_BORDER="$MUTED"    # 665c54
+HYPR_SHADOW_COLOR="$BASE"        # 282828
+
+# Convert hex to rgba for Hyprland
+HYPR_ACTIVE_BORDER_RGBA="rgba(d3869bee)"
+HYPR_INACTIVE_BORDER_RGBA="rgba(665c54aa)"
+
+# Neovim
+colorscheme="gruvbox"
