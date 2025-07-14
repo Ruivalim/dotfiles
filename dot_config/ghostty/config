@@ -1,6 +1,6 @@
 background = #191724
 selection-background = #e0def4
 foreground = #e0def4
-selection-foreground = #2a2837
+selection-foreground = #1f1d2e
 
-command = /usr/bin/zsh --login --interactive
+command = /bin/zsh --login --interactive
