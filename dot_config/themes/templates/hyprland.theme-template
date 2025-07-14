@@ -1,26 +1,2 @@
-# Hyprland theme configuration
-# This file contains only the theming parts - include in main hyprland.conf
-
-general {
-    gaps_in = 5
-    gaps_out = 10
-    border_size = 1
-    col.active_border = {{HYPR_ACTIVE_BORDER_RGBA}}
-    col.inactive_border = {{HYPR_INACTIVE_BORDER_RGBA}}
-    layout = dwindle
-}
-
-decoration {
-    rounding = 5
-    blur {
-        enabled = true
-        size = 3
-        passes = 1
-        new_optimizations = true
-    }
-    
-    drop_shadow = true
-    shadow_range = 4
-    shadow_render_power = 3
-    col.shadow = {{HYPR_ACTIVE_BORDER_RGBA}}
-}
+$active_border = {{HYPR_ACTIVE_BORDER_RGBA}}
+$inactive_border = {{HYPR_INACTIVE_BORDER_RGBA}}

@@ -1,19 +1,19 @@
 /* ~/.config/wofi/style.css */
 
 /* Color definitions */
-@define-color primary_bg $WAYBAR_PRIMARY_BG;
-@define-color secondary_bg $WAYBAR_SECONDARY_BG;
-@define-color accent_color $WAYBAR_ACCENT_COLOR;
-@define-color accent_hover $WAYBAR_ACCENT_HOVER;
-@define-color accent_active $WAYBAR_ACCENT_ACTIVE;
-@define-color text_primary $WAYBAR_TEXT_PRIMARY;
-@define-color text_secondary $WAYBAR_TEXT_SECONDARY;
-@define-color text_muted $WAYBAR_TEXT_MUTED;
-@define-color border_color $WAYBAR_BORDER_COLOR;
-@define-color border_hover $WAYBAR_BORDER_HOVER;
-@define-color module_bg $WAYBAR_MODULE_BG;
-@define-color module_hover $WAYBAR_MODULE_HOVER;
-@define-color accent_secondary $WAYBAR_ACCENT_SECONDARY;
+@define-color primary_bg rgba(25, 23, 36, 0.95);
+@define-color secondary_bg rgba(31, 29, 46, 0.95);
+@define-color accent_color #c4a7e7;
+@define-color accent_hover rgba(196, 167, 231, 0.2);
+@define-color accent_active rgba(196, 167, 231, 0.4);
+@define-color text_primary #e0def4;
+@define-color text_secondary #908caa;
+@define-color text_muted #6e6a86;
+@define-color border_color rgba(196, 167, 231, 0.3);
+@define-color border_hover rgba(196, 167, 231, 0.4);
+@define-color module_bg rgba(224, 222, 244, 0.05);
+@define-color module_hover rgba(196, 167, 231, 0.15);
+@define-color accent_secondary #ebbcba;
 
 /* Main window */
 window {

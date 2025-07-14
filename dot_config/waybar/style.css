@@ -1,20 +1,20 @@
-@define-color primary_bg rgba(25, 23, 36, 0.95)"     # BASE with alpha;
-@define-color secondary_bg rgba(31, 29, 46, 0.95)"   # SURFACE with alpha;
-@define-color accent_color $IRIS"                     # c4a7e7;
-@define-color accent_hover rgba(196, 167, 231, 0.2)" # IRIS with alpha;
-@define-color accent_active rgba(196, 167, 231, 0.4)" # IRIS with alpha;
-@define-color text_primary $TEXT"                     # e0def4;
-@define-color text_secondary $SUBTLE"                 # 908caa;
-@define-color text_muted $MUTED"                      # 6e6a86;
-@define-color border_color rgba(196, 167, 231, 0.3)" # IRIS with alpha;
-@define-color border_hover rgba(196, 167, 231, 0.4)" # IRIS with alpha;
-@define-color module_bg rgba(224, 222, 244, 0.05)"   # TEXT with alpha;
-@define-color module_hover rgba(196, 167, 231, 0.15)" # IRIS with alpha;
-@define-color urgent_color $LOVE"                     # eb6f92;
-@define-color warning_color $GOLD"                    # f6c177;
-@define-color success_color $FOAM"                    # 9ccfd8;
-@define-color info_color $PINE"                       # 31748f;
-@define-color accent_secondary $ROSE"                 # ebbcba;
+@define-color primary_bg rgba(25, 23, 36, 0.95);
+@define-color secondary_bg rgba(31, 29, 46, 0.95);
+@define-color accent_color #c4a7e7;
+@define-color accent_hover rgba(196, 167, 231, 0.2);
+@define-color accent_active rgba(196, 167, 231, 0.4);
+@define-color text_primary #e0def4;
+@define-color text_secondary #908caa;
+@define-color text_muted #6e6a86;
+@define-color border_color rgba(196, 167, 231, 0.3);
+@define-color border_hover rgba(196, 167, 231, 0.4);
+@define-color module_bg rgba(224, 222, 244, 0.05);
+@define-color module_hover rgba(196, 167, 231, 0.15);
+@define-color urgent_color #eb6f92;
+@define-color warning_color #f6c177;
+@define-color success_color #9ccfd8;
+@define-color info_color #31748f;
+@define-color accent_secondary #ebbcba;
 
 * {
   border: none;

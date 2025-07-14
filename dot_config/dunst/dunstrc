@@ -8,14 +8,13 @@
     offset = (10,50)
     
     frame_width = 2
-    frame_color = "$IRIS"        # c4a7e7"
+    frame_color = "#c4a7e7"
     separator_color = frame
     
     font = Monospace 10
     line_height = 0
     markup = full
-    format = "<b>%s</b>
-%b"
+    format = "<b>%s</b>\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
@@ -50,17 +49,17 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "$BASE"         # 191724"
-    foreground = "$TEXT"         # e0def4"
+    background = "#191724"
+    foreground = "#e0def4"
     timeout = 10
 
 [urgency_normal]
-    background = "$BASE"         # 191724"
-    foreground = "$TEXT"         # e0def4"
+    background = "#191724"
+    foreground = "#e0def4"
     timeout = 10
 
 [urgency_critical]
-    background = "$BASE"         # 191724"
-    foreground = "$TEXT"         # e0def4"
-    frame_color = "$LOVE"     # eb6f92"
+    background = "#191724"
+    foreground = "#e0def4"
+    frame_color = "#eb6f92"
     timeout = 60
