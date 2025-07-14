@@ -92,8 +92,6 @@ apply_app_theme() {
         # Remove quotes from value if present
         value="${value#\"}"
         value="${value%\"}"
-        
-        # Replace template placeholders
         content="${content//\{\{$key\}\}/$value}"
     done < "$THEME_FILE"
     
