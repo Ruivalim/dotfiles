@@ -40,7 +40,7 @@ backup_configs() {
 # Function to apply theme to a specific app
 apply_app_theme() {
     local app="$1"
-    local template_file="$TEMPLATES_DIR/$app.tmpl"
+    local template_file="$TEMPLATES_DIR/$app.theme-template"
     local output_file=""
     
     case "$app" in
@@ -60,7 +60,11 @@ apply_app_theme() {
             output_file="$CONFIG_DIR/hypr/theme.conf"
             ;;
         "nvim")
-            output_file="$CONFIG_DIR/nvim/lua/theme.lua"
+            # Write current theme name to file for nvim to read
+            mkdir -p "$CONFIG_DIR/themes"
+            echo "$THEME_NAME" > "$CONFIG_DIR/themes/current-theme"
+            echo "Set current theme for nvim: $THEME_NAME"
+            return 0
             ;;
         *)
             echo "Unknown app: $app"
@@ -92,6 +96,9 @@ apply_app_theme() {
         # Replace template placeholders
         content="${content//\{\{$key\}\}/$value}"
     done < "$THEME_FILE"
+    
+    # Replace ZSH_COMMAND placeholder specifically
+    content="${content//\{\{ZSH_COMMAND\}\}/$ZSH_COMMAND}"
     
     # Write processed content to output file
     echo "$content" > "$output_file"
