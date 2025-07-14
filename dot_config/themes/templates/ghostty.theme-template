@@ -1,0 +1,6 @@
+background = {{GHOSTTY_BG}}
+selection-background = {{GHOSTTY_SELECTION_BG}}
+foreground = {{GHOSTTY_FG}}
+selection-foreground = {{GHOSTTY_SELECTION_FG}}
+
+{{ZSH_COMMAND}}

@@ -1,19 +1,19 @@
 /* ~/.config/wofi/style.css */
 
 /* Color definitions */
-@define-color primary_bg rgba(25, 23, 36, 0.95);
-@define-color secondary_bg rgba(31, 29, 46, 0.95);
-@define-color accent_color #c4a7e7;
-@define-color accent_hover rgba(196, 167, 231, 0.2);
-@define-color accent_active rgba(196, 167, 231, 0.4);
-@define-color text_primary #e0def4;
-@define-color text_secondary #908caa;
-@define-color text_muted #6e6a86;
-@define-color border_color rgba(196, 167, 231, 0.3);
-@define-color border_hover rgba(196, 167, 231, 0.4);
-@define-color module_bg rgba(224, 222, 244, 0.05);
-@define-color module_hover rgba(196, 167, 231, 0.15);
-@define-color accent_secondary #ebbcba;
+@define-color primary_bg {{WOFI_PRIMARY_BG}};
+@define-color secondary_bg {{WOFI_SECONDARY_BG}};
+@define-color accent_color {{WOFI_ACCENT_COLOR}};
+@define-color accent_hover {{WOFI_ACCENT_HOVER}};
+@define-color accent_active {{WOFI_ACCENT_ACTIVE}};
+@define-color text_primary {{WOFI_TEXT_PRIMARY}};
+@define-color text_secondary {{WOFI_TEXT_SECONDARY}};
+@define-color text_muted {{WOFI_TEXT_MUTED}};
+@define-color border_color {{WOFI_BORDER_COLOR}};
+@define-color border_hover {{WOFI_BORDER_HOVER}};
+@define-color module_bg {{WOFI_MODULE_BG}};
+@define-color module_hover {{WOFI_MODULE_HOVER}};
+@define-color accent_secondary {{WOFI_ACCENT_SECONDARY}};
 
 /* Main window */
 window {

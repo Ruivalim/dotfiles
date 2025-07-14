@@ -18,3 +18,15 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("plugins")
 require("mappings")
+
+-- Auto-load theme based on current-theme file
+local theme_file = io.open(vim.fn.expand("~/.config/themes/current-theme"), "r")
+if theme_file then
+    local theme = theme_file:read("*line")
+    theme_file:close()
+    
+    if theme then
+        theme = theme:gsub("%s+", "") -- trim whitespace
+        vim.cmd.colorscheme(theme)
+    end
+end
