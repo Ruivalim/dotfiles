@@ -1,15 +1,35 @@
 zhelp () {
   echo "c => cat file | pbcopy"
   echo "update_abi => abi leaves && abi cask"
+  echo ""
+  echo "== Pod functions =="
   echo "kgp => kubectl get pod"
-  echo "kdlp => kubectl delete pod "
-  echo "kexp => kubectl exec pod"
-  echo "kdcp => kubectl describe pod"
-  echo "kdcn => kubectl describe node"
-  echo "klp => kubectl log -f "
-  echo "kgcm => kubectl get configmap -oyaml "
-  echo "kgs => kubectl get secret -oyaml "
-  echo "kdebug => kubectl debug"
+  echo "kdlp => kubectl delete pod (with fzf)"
+  echo "kexp => kubectl exec pod (with fzf)"
+  echo "kdcp => kubectl describe pod (with fzf)"
+  echo "klp => kubectl log -f (with fzf)"
+  echo ""
+  echo "== ConfigMap functions =="
+  echo "kgcm => kubectl get configmap -oyaml (with fzf)"
+  echo "kdcm => kubectl describe configmap (with fzf)"
+  echo "kdlcm => kubectl delete configmap (with fzf)"
+  echo ""
+  echo "== Secret functions =="
+  echo "kgs => kubectl get secret -oyaml (with fzf)"
+  echo "kds => kubectl describe secret (with fzf)"
+  echo "kdls => kubectl delete secret (with fzf)"
+  echo ""
+  echo "== Other kubectl functions =="
+  echo "kdcn => kubectl describe node (with fzf)"
+  echo "kgsa => kubectl get serviceaccount (with fzf)"
+  echo "kgdp => kubectl get deployment (with fzf)"
+  echo "kgep => kubectl get endpoints (with fzf)"
+  echo "kgns => change namespace (with fzf)"
+  echo "ktop => kubectl top pods"
+  echo "ktopn => kubectl top nodes"
+  echo "kdebug => kubectl debug pod"
+  echo "kgaz => get azurekeyvaultsecrets (with fzf)"
+  echo "kdaz => describe azurekeyvaultsecrets (with fzf)"
 }
 
 c () {
@@ -106,27 +126,6 @@ klp () {
 	kubectl logs -f "$selected_pod"
 }
 
-kgcm () {
-	selected_configmap=$(kubectl get configmap | awk '{print $1;}' | fzf)
-	if [ -z "$selected_configmap" ]
-	then
-		echo "No configmap selected."
-		return 1
-	fi
-	kubectl get configmap "$selected_configmap" -oyaml | bat -l yaml
-}
-
-kgs () {
-	_command="${1:-bat -l yaml}"
-	selected_secret=$(kubectl get secret | awk '{print $1;}' | fzf)
-	if [ -z "$selected_secret" ]
-	then
-		echo "No secret selected."
-		return 1
-	fi
-  kubectl get secret "$selected_secret" -oyaml | eval "$_command" 
-}
-
 kgaz () {
 	_command="${1:-bat -l yaml}"
 	selected_secret=$(kubectl get azurekeyvaultsecrets | awk '{print $1;}' | fzf)
@@ -189,4 +188,98 @@ edit_nvim () {
 
 edit_zsh () {
   nvim ~/.config/zsh
+}
+
+# Additional kubectl functions for secrets and configmaps
+
+kdcm () {
+	selected_configmap=$(kubectl get configmap | awk '{print $1;}' | fzf)
+	if [ -z "$selected_configmap" ]
+	then
+		echo "No configmap selected."
+		return 1
+	fi
+	kubectl describe configmap "$selected_configmap"
+}
+
+kds () {
+	selected_secret=$(kubectl get secret | awk '{print $1;}' | fzf)
+	if [ -z "$selected_secret" ]
+	then
+		echo "No secret selected."
+		return 1
+	fi
+	kubectl describe secret "$selected_secret"
+}
+
+kdls () {
+	selected_secret=$(kubectl get secret | awk '{print $1;}' | fzf)
+	if [ -z "$selected_secret" ]
+	then
+		echo "No secret selected."
+		return 1
+	fi
+	kubectl delete secret "$selected_secret"
+}
+
+kdlcm () {
+	selected_configmap=$(kubectl get configmap | awk '{print $1;}' | fzf)
+	if [ -z "$selected_configmap" ]
+	then
+		echo "No configmap selected."
+		return 1
+	fi
+	kubectl delete configmap "$selected_configmap"
+}
+
+kgs () {
+	selected_secret=$(kubectl get secret | awk '{print $1;}' | fzf)
+	if [ -z "$selected_secret" ]
+	then
+		echo "No secret selected."
+		return 1
+	fi
+	kubectl get secret "$selected_secret" -o jsonpath='{.data}' | jq -r 'to_entries[] | "\(.key): \(.value | @base64d)"'
+}
+
+kgcm () {
+	selected_configmap=$(kubectl get configmap | awk '{print $1;}' | fzf)
+	if [ -z "$selected_configmap" ]
+	then
+		echo "No configmap selected."
+		return 1
+	fi
+	kubectl get configmap "$selected_configmap" -o jsonpath='{.data}' | jq -r 'to_entries[] | "\(.key):\n\(.value)\n---"'
+}
+
+kgsa () {
+	kubectl get serviceaccount | fzf | awk '{print $1;}' | xargs -I {} kubectl get serviceaccount {} -oyaml | bat -l yaml
+}
+
+kgdp () {
+	kubectl get deployment | fzf | awk '{print $1;}' | xargs -I {} kubectl get deployment {} -oyaml | bat -l yaml
+}
+
+kgep () {
+	kubectl get endpoints | fzf | awk '{print $1;}' | xargs -I {} kubectl get endpoints {} -oyaml | bat -l yaml
+}
+
+kgns () {
+	kubectl get namespace | fzf | awk '{print $1;}' | xargs -I {} kubectl config set-context --current --namespace={}
+}
+
+ktop () {
+	kubectl top pods --sort-by=cpu | bat
+}
+
+ktopn () {
+	kubectl top nodes --sort-by=cpu | bat
+}
+
+screen_reset () {
+  hyprctl keyword monitor ,preferred,auto,1
+}
+
+screen_fhd () {
+  hyprctl keyword monitor ,1920x1080@60,0x0,1
 }
