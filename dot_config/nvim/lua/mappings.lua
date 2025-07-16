@@ -19,6 +19,20 @@ vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", {})
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", {})
 vim.api.nvim_set_keymap("n", "s", '<cmd>lua require("flash").jump()<cr>', {})
 
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy selection to clipboard" })
+local clipboard_enabled = false
+vim.keymap.set("n", "<leader>tc", function()
+	if clipboard_enabled then
+		vim.opt.clipboard = ""
+		clipboard_enabled = false
+		vim.notify("Clipboard disabled")
+	else
+		vim.opt.clipboard = "unnamedplus"
+		clipboard_enabled = true
+		vim.notify("Clipboard enabled")
+	end
+end, { desc = "Toggle clipboard" })
+
 local wk = require("which-key")
 local global_note = require("global-note")
 wk.add({
@@ -68,4 +82,15 @@ wk.add({
 		nowait = true,
 		remap = false,
 	},
+	{
+		"<leader>w",
+		group = "WebDav",
+		nowait = true,
+		remap = false,
+	},
+	{ "<leader>wc", "<cmd>WebDAVConnect<cr>", desc = "Connect to WebDAV Server", nowait = true, remap = false },
+	{ "<leader>wd", "<cmd>WebDAVDeleteServer<cr>", desc = "Delete WebDAV Server", nowait = true, remap = false },
+	{ "<leader>wb", "<cmd>WebDAVBrowse<cr>", desc = "Browse WebDAV Server", nowait = true, remap = false },
+	{ "<leader>ws", "<cmd>WebDAVServers<cr>", desc = "WebDAV Servers", nowait = true, remap = false },
+	{ "<leader>wf", "<cmd>WebDAVSearch<cr>", desc = "WebDAV Search", nowait = true, remap = false },
 })

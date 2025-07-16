@@ -11,3 +11,5 @@ alias sudovim="sudo -E nvim"
 if [ $TERM = "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
 fi
+
+alias cd="z"

@@ -33,18 +33,21 @@ zhelp () {
 }
 
 c () {
-
-  local input=$(cat) 
-
+  if [ -t 0 ]; then
+    input="$1"
+  else
+    input=$(cat)
+  fi
+  
   case "$(uname -s)" in
     Darwin)
-      echo $input | pbcopy
+      echo "$input" | pbcopy
       ;;
     Linux)
       if command -v wl-copy &> /dev/null; then
-        echo $input | wl-copy
+        echo "$input" | wl-copy
       elif command -v xclip &> /dev/null; then
-        echo $input | xclip -selection clipboard
+        echo "$input" | xclip -selection clipboard
       else
         echo "Error: Neither wl-copy nor xclip found."
         echo "Install: sudo apt install wl-clipboard  # or xclip"
@@ -52,7 +55,7 @@ c () {
       fi
       ;;
     CYGWIN*|MINGW*|MSYS*)
-      echo $input | clip.exe
+      echo "$input" | clip.exe
       ;;
     *)
       echo "Unsupported OS: $(uname -s)"

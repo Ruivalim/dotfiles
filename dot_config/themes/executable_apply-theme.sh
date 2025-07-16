@@ -15,7 +15,6 @@ THEME_FILE="$THEMES_DIR/$THEME_NAME.theme"
 
 # Function to show available themes
 show_themes() {
-    echo "Available themes:"
     for theme in "$THEMES_DIR"/*.theme; do
         if [[ -f "$theme" ]]; then
             basename "$theme" .theme
