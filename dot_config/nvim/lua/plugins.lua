@@ -32,6 +32,7 @@ require("plugins.auto-session")
 require("plugins.global-note")
 require("plugins.notify")
 require("plugins.supermaven")
+require("plugins.webdav")
 
 require("lazy").setup(plugins)
 
