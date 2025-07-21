@@ -177,7 +177,6 @@ table.insert(plugins, {
 					callback = function()
 						vim.cmd("silent! Neoformat")
 					end,
-					buffer = vim.api.nvim_get_current_buf(),
 				})
 			end
 		end

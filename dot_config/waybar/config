@@ -1,5 +1,5 @@
 {
-    "layer": "top",
+  "layer": "top",
     "position": "top",
     "height": 30,
     "modules-left": ["hyprland/workspaces"],
@@ -8,34 +8,33 @@
     "hyprland/workspaces": {
       "format": "{name}: <span>{icon}</span>",
       "format-icons": {
-        "1": "\uf015",
-        "2": "\uf269",
-        "3": "\uf6e2",
-        "4": "\uf02d",
-        "5": "\uf1bc",
+        "1": "\uf269",
+        "2": "\uf6e2",
+        "3": "\uf02d",
+        "4": "\uf1bc",
         "default": "\uf2d0"
       },
     },
     "clock": {
-        "format": "{:%H:%M   %e %b}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d/%m/%Y}"
+      "format": "{:%H:%M   %e %b}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%d/%m/%Y}"
     },
     "network": {
-        "format-wifi": "<span>\uf1eb</span> ({signalStrength}%) {ipaddr}",
-        "format-ethernet": "<span>\uf6ff</span> {ipaddr}",
-        "format-disconnected": "Disconnected ⚠",
+      "format-wifi": "<span>\uf1eb</span> ({signalStrength}%) {ipaddr}",
+      "format-ethernet": "<span>\uf6ff</span> {ipaddr}",
+      "format-disconnected": "Disconnected ⚠",
     },
     "wireplumber": {
-        "format": "<span>{icon}</span> {volume}%",
-        "format-muted": "<span>\uf6a9</span>",
-        "on-click": "pavucontrol",
-        "format-icons": ["\uf026", "\uf027", "\uf028"]
+      "format": "<span>{icon}</span> {volume}%",
+      "format-muted": "<span>\uf6a9</span>",
+      "on-click": "pavucontrol",
+      "format-icons": ["\uf026", "\uf027", "\uf028"]
     },
     "memory": {
-        "interval": 30,
-        "format": "<span>\uf538</span> {}%",
-        "max-length": 10
+      "interval": 30,
+      "format": "<span>\uf538</span> {}%",
+      "max-length": 10
     },
     "cpu": {
       "interval": 10,
@@ -55,49 +54,51 @@
       "icon-size": 18,
       "transition-duration": 250,
       "modules": [
-        {
-          "type": "screenshare",
-          "tooltip": true,
-          "tooltip-icon-size": 24
-        },
-        {
-          "type": "audio-out",
-          "tooltip": true,
-          "tooltip-icon-size": 24
-        },
-        {
-          "type": "audio-in",
-          "tooltip": true,
-          "tooltip-icon-size": 24
-        }
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
       ],
       "ignore-monitor": true,
       "ignore": [
-        {
-          "type": "audio-in",
-          "name": "cava"
-        },
-        {
-          "type": "screenshare",
-          "name": "obs"
-        }
+      {
+        "type": "audio-in",
+        "name": "cava"
+      },
+      {
+        "type": "screenshare",
+        "name": "obs"
+      }
       ]
     },
     "custom/dunst": {
-        "exec": "dunstctl count history",
-        "format": "<span>\uf0f3</span> {}",
-        "on-click": "dunstctl history-pop"
+      "exec": "[ $(dunstctl is-paused) = true ] && echo '\uf1f6' || echo '\uf0f3'",
+      "interval": 60,
+      "format": "<span>{}</span>",
+      "on-click": "dunstctl set-paused toggle",
+      "on-click-right": "dunstctl history-pop",
     },
     "custom/tailscale": {
-        "format": "<span color='{}'>\uf542</span>",
-        "exec": "sh ~/.config/waybar/scripts/tailscale/status.sh",
-        "interval": 10,
-        "on-click": "sh ~/.config/waybar/scripts/tailscale/toggle.sh",
-        "tooltip": true,
-        "tooltip-format": "Tailscale"
+      "format": "<span color='{}'>\uf542</span>",
+      "exec": "sh ~/.config/waybar/scripts/tailscale/status.sh",
+      "interval": 10,
+      "on-click": "sh ~/.config/waybar/scripts/tailscale/toggle.sh",
+      "tooltip": true,
+      "tooltip-format": "Tailscale"
     },
     "tray": {
-        "spacing": 10,
-        "tooltip": false
+      "spacing": 10,
+      "tooltip": false
     },
 }

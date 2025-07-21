@@ -19,8 +19,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family:
-    "JetBrains Mono", "Roboto", "SF Pro Display", system-ui, sans-serif;
+  font-family: "JetBrains Mono", "Roboto", "SF Pro Display", system-ui, sans-serif;
   font-size: 13px;
   font-weight: 500;
   min-height: 0;
@@ -33,12 +32,7 @@ span {
 }
 
 window#waybar {
-  background: linear-gradient(
-    135deg,
-    @primary_bg 0%,
-    @secondary_bg 50%,
-    rgba(25, 15, 50, 0.95) 100%
-  );
+  background: linear-gradient(135deg, @primary_bg 0%, @secondary_bg 50%, rgba(25, 15, 50, 0.95) 100%);
   border-bottom: 2px solid @border_color;
   color: @text_primary;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -78,11 +72,7 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-  background: linear-gradient(
-    135deg,
-    @urgent_color 0%,
-    rgba(192, 57, 43, 1) 100%
-  );
+  background: linear-gradient(135deg, @urgent_color 0%, rgba(192, 57, 43, 1) 100%);
   color: @text_primary;
   animation: urgentPulse 2s infinite;
 }
@@ -110,11 +100,7 @@ window#waybar {
 }
 
 #clock {
-  background: linear-gradient(
-    135deg,
-    @accent_hover 0%,
-    rgba(108, 66, 196, 0.1) 100%
-  );
+  background: linear-gradient(135deg, @accent_hover 0%, rgba(108, 66, 196, 0.1) 100%);
   color: @text_primary;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -288,4 +274,13 @@ scrollbar slider {
 
 scrollbar slider:hover {
   opacity: 0.8;
+}
+
+#custom-tailscale {
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+#custom-tailscale > span {
+  color: red;
 }

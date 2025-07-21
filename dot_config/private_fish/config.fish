@@ -61,3 +61,10 @@ end
 
 bind \e\e\eOC forward-word
 bind \e\e\eOD backward-word
+
+# pnpm
+set -gx PNPM_HOME "/home/ruivalim/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
