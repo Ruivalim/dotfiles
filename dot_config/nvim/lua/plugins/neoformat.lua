@@ -20,6 +20,7 @@ table.insert(plugins, {
 		vim.g.neoformat_enabled_jsx = { "prettier" }
 		vim.g.neoformat_enabled_tsx = { "prettier" }
 		vim.g.neoformat_enabled_jsp = { "htmlbeautify", "tidy" }
+		vim.g.neoformat_enabled_python = { "autopep8" }
 
 		vim.g.neoformat_html_prettier = {
 			exe = "prettier",
@@ -131,58 +132,12 @@ table.insert(plugins, {
 			stdin = 1,
 		}
 
-		local function check_prettier()
-			local handle = io.popen("which prettier 2>/dev/null")
-			local result = handle:read("*a")
-			handle:close()
-			return result ~= ""
-		end
-
-		local function check_html_beautify()
-			local handle = io.popen("which html-beautify 2>/dev/null")
-			local result = handle:read("*a")
-			handle:close()
-			return result ~= ""
-		end
-
 		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 			pattern = "*.jsp",
 			callback = function()
 				vim.bo.filetype = "jsp"
 				vim.cmd("set syntax=html")
 			end,
-		})
-
-		local function setup_auto_format()
-			local cwd = vim.fn.getcwd()
-			local package_json = cwd .. "/package.json"
-			local prettier_config = cwd .. "/.prettierrc"
-
-			-- Se existe package.json ou .prettierrc, ativar auto-formatação
-			if vim.fn.filereadable(package_json) == 1 or vim.fn.filereadable(prettier_config) == 1 then
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					pattern = {
-						"*.js",
-						"*.jsx",
-						"*.ts",
-						"*.tsx",
-						"*.html",
-						"*.css",
-						"*.scss",
-						"*.json",
-						"*.md",
-						"*.vue",
-						"*.jsp",
-					},
-					callback = function()
-						vim.cmd("silent! Neoformat")
-					end,
-				})
-			end
-		end
-
-		vim.api.nvim_create_autocmd("BufEnter", {
-			callback = setup_auto_format,
 		})
 	end,
 })

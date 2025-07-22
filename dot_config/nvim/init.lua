@@ -19,14 +19,31 @@ require("options")
 require("plugins")
 require("mappings")
 
--- Auto-load theme based on current-theme file
-local theme_file = io.open(vim.fn.expand("~/.config/themes/current-theme"), "r")
-if theme_file then
-    local theme = theme_file:read("*line")
-    theme_file:close()
-    
-    if theme then
-        theme = theme:gsub("%s+", "") -- trim whitespace
-        vim.cmd.colorscheme(theme)
-    end
+local ok, theme_content = pcall(function()
+	local theme_file = io.open(vim.fn.expand("~/.config/themes/current-theme"), "r")
+	if theme_file then
+		local theme = theme_file:read("*line")
+		theme_file:close()
+		return theme
+	end
+	return nil
+end)
+
+if ok and theme_content then
+	theme_content = theme_content:gsub("%s+", "")
+	-- Validate theme name (alphanumeric, dash, underscore only)
+	if theme_content:match("^[%w_-]+$") then
+		local theme_ok = pcall(vim.cmd.colorscheme, theme_content)
+		if not theme_ok then
+			vim.cmd.colorscheme("default")
+			vim.notify("Failed to load theme '" .. theme_content .. "', using default", vim.log.levels.WARN)
+		end
+	else
+		vim.cmd.colorscheme("default")
+		vim.notify("Invalid theme name, using default", vim.log.levels.WARN)
+	end
+else
+	vim.cmd.colorscheme("default")
 end
+
+require("precognition").toggle()

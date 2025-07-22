@@ -32,17 +32,16 @@
 - **`<C-d>`**: Scroll down half a page and center the cursor.
 - **`<C-u>`**: Scroll up half a page and center the cursor.
 - **`s`**: Jump to a location using the "flash" plugin.
-- **`gd`**: Go to the definition of the symbol under the cursor.
-- **`gD`**: Go to the declaration of the symbol under the cursor.
-- **`gy`**: Go to the type definition of the symbol under the cursor.
-- **`gi`**: Go to the implementation of the symbol under the cursor.
-- **`gr`**: Show references to the symbol under the cursor.
-- **`<leader>ca`**: Show code actions for the symbol under the cursor.
-- **`<leader>rn`**: Rename the symbol under the cursor.
-- **`[d`**: Go to the previous diagnostic.
-- **`]d`**: Go to the next diagnostic.
-- **`<leader>e`**: Show diagnostic details in a floating window.
-- **`<leader>q`**: Add diagnostics to the quickfix list.
+- **`<leader>ld`**: Go to the definition of the symbol under the cursor.
+- **`<leader>li`**: Go to the implementation of the symbol under the cursor.
+- **`<leader>lt`**: Go to the type definition of the symbol under the cursor.
+- **`<leader>lr`**: Show references to the symbol under the cursor.
+- **`<leader>la`**: Show code actions for the symbol under the cursor.
+- **`<leader>ln`**: Rename the symbol under the cursor.
+- **`<leader>lh`**: Show hover information for the symbol under the cursor.
+- **`<leader>dp`**: Go to the previous diagnostic.
+- **`<leader>dn`**: Go to the next diagnostic.
+- **`<leader>dd`**: Show diagnostic details in a floating window.
 - **`<leader>bc`**: Close the current buffer.
 - **`<leader>ba`**: Close all buffers except the current one.
 - **`<leader>bj`**: Pick a buffer to jump to.
@@ -50,6 +49,10 @@
 - **`<leader>bp`**: Go to the previous buffer.
 - **`<leader>ff`**: Find a file using Telescope.
 - **`<leader>fr`**: Open a recently used file using Telescope.
+- **`<leader>fg`**: Live grep using Telescope.
+- **`<leader>fs`**: Grep string using Telescope.
+- **`<leader>fb`**: Find buffers using Telescope.
+- **`<leader>fh`**: Help tags using Telescope.
 - **`<leader>o`**: Open the Oil plugin.
 - **`<leader>pl`**: Open the Lazy plugin manager.
 - **`<leader>pm`**: Open the Mason plugin manager.
@@ -59,15 +62,22 @@
 - **`<leader>ng`**: Toggle global notes.
 - **`<leader>np`**: Toggle project-local notes.
 - **`<leader>nv`**: Toggle Vim notes.
+- **`<leader>tp`**: Toggle Precognition.
+- **`<leader>y`**: Copy selection to clipboard (visual mode).
+- **`<leader>tc`**: Toggle clipboard.
+- **`<leader>wc`**: Connect to WebDAV server.
+- **`<leader>wd`**: Delete WebDAV server.
+- **`<leader>wb`**: Browse WebDAV server.
+- **`<leader>ws`**: List WebDAV servers.
+- **`<leader>wf`**: WebDAV search.
 
 ## LSP & Code Navigation
 
 ### Go to Definition/Import
-- **`gd`**: Go to definition (works for imported modules/functions)
-- **`gD`**: Go to declaration (useful for function declarations)
-- **`gy`**: Go to type definition (helpful for TypeScript/Rust types)
-- **`gi`**: Go to implementation (finds actual implementation)
-- **`gr`**: Find all references (shows where symbol is used)
+- **`<leader>ld`**: Go to definition (works for imported modules/functions)
+- **`<leader>lt`**: Go to type definition (helpful for TypeScript/Rust types)
+- **`<leader>li`**: Go to implementation (finds actual implementation)
+- **`<leader>lr`**: Find all references (shows where symbol is used)
 
 ### Using Telescope for Advanced Navigation
 - **`<leader>ff`**: Find files (search for specific module files)
@@ -82,20 +92,20 @@
 
 ### Working with Imports
 - **`K`**: Show hover info (displays import source/docs)
-- **`<leader>ca`**: Code actions (auto-import suggestions)
-- **`<leader>rn`**: Rename symbol (updates imports too)
+- **`<leader>lh`**: Show hover info (alternative)
+- **`<leader>la`**: Code actions (auto-import suggestions)
+- **`<leader>ln`**: Rename symbol (updates imports too)
 
 ### Diagnostics & Errors
-- **`[d`**: Previous diagnostic/error
-- **`]d`**: Next diagnostic/error
-- **`<leader>e`**: Show diagnostic details
-- **`<leader>q`**: Add diagnostics to quickfix list
+- **`<leader>dp`**: Previous diagnostic/error
+- **`<leader>dn`**: Next diagnostic/error
+- **`<leader>dd`**: Show diagnostic details
 
 ### Quick Tips
-- Use `gd` on any imported symbol to jump to its definition
-- Use `gr` to see all places where an import is used
-- Use `K` to quickly see documentation for imported functions
-- Use `:Telescope live_grep` + import name to find import statements
+- Use `<leader>ld` on any imported symbol to jump to its definition
+- Use `<leader>lr` to see all places where an import is used
+- Use `K` or `<leader>lh` to quickly see documentation for imported functions
+- Use `<leader>fg` + import name to find import statements
 
 ## Visual Mode
 

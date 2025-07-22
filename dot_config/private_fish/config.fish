@@ -68,3 +68,9 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# opencode
+fish_add_path /home/ruivalim/.opencode/bin
+
+# Created by `pipx` on 2025-07-22 12:44:00
+set PATH $PATH /home/ruivalim/.local/bin

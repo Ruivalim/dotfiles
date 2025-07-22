@@ -30,7 +30,6 @@ table.insert(after_load, function()
 			["<CR>"] = cmp.mapping.confirm({ select = true }),
 		}),
 		sources = cmp.config.sources({
-			{ name = "cmp_ai" },
 			{ name = "nvim_lsp" },
 		}, {
 			{ name = "buffer" },

@@ -23,7 +23,7 @@ table.insert(plugins, {
 	"refractalize/oil-git-status.nvim",
 	dependencies = { "stevearc/oil.nvim" },
 	config = true,
-	opt = {
+	opts = {
 		show_ignored = true,
 	},
 })

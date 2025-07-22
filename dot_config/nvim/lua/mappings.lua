@@ -13,11 +13,11 @@ function _G.check_back_space()
 end
 
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", {})
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", {})
-vim.api.nvim_set_keymap("n", "s", '<cmd>lua require("flash").jump()<cr>', {})
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {})
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {})
+vim.keymap.set("n", "s", '<cmd>lua require("flash").jump()<cr>', {})
 
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy selection to clipboard" })
 local clipboard_enabled = false
@@ -49,7 +49,6 @@ wk.add({
 	{ "<leader>p", group = "Plugins", nowait = true, remap = false },
 	{ "<leader>pl", "<cmd>Lazy<cr>", desc = "Lazy", nowait = true, remap = false },
 	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason", nowait = true, remap = false },
-	{ "<leader>u", "<cmd>MundoToggle<cr>", desc = "Mundo Toggle", nowait = true, remap = false },
 	{ "<leader>t", group = "Toggle", nowait = true, remap = false },
 	{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", nowait = true, remap = false },
 	{ "<leader>tp", function() require("precognition").toggle() end, desc = "Toggle Precognition", nowait = true, remap = false },

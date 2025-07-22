@@ -27,7 +27,7 @@ table.insert(plugins, {
 				"graphql",
 				"regex",
 			},
-			sync_insuall = false,
+			sync_install = false,
 			auto_install = true,
 			highlight = {
 				enable = true,

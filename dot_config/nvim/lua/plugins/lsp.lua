@@ -15,7 +15,6 @@ table.insert(plugins, {
 			"taplo",
 			"helm_ls",
 			"yamlls",
-			"ols",
 			"svelte",
 		},
 	},

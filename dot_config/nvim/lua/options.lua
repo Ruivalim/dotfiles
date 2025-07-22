@@ -18,11 +18,7 @@ vim.opt.undofile = true
 vim.opt.laststatus = 3
 vim.opt.termguicolors = true
 
-if uname == "Darwin" then
-	vim.opt.undodir = "/Users/ruivalim/.undo_history"
-elseif uname == "Linux" then
-	vim.opt.undodir = "/home/ruivalim/.undo_history"
-end
+vim.opt.undodir = vim.fn.expand("~/.undo_history")
 
 local group = vim.api.nvim_create_augroup("fmt", { clear = true })
 

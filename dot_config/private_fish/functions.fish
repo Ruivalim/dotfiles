@@ -33,11 +33,10 @@ function zhelp
 end
 
 function c
-    set input
     if isatty stdin
         set input $argv[1]
     else
-        set input (cat)
+        read -z input
     end
 
     switch (uname -s)
