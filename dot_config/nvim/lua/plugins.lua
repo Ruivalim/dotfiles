@@ -31,6 +31,7 @@ require("plugins.global-note")
 require("plugins.notify")
 require("plugins.supermaven")
 require("plugins.webdav")
+require("plugins.render-markdown")
 
 require("lazy").setup(plugins)
 

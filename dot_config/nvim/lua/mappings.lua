@@ -51,7 +51,24 @@ wk.add({
 	{ "<leader>pm", "<cmd>Mason<cr>", desc = "Mason", nowait = true, remap = false },
 	{ "<leader>t", group = "Toggle", nowait = true, remap = false },
 	{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", nowait = true, remap = false },
-	{ "<leader>tp", function() require("precognition").toggle() end, desc = "Toggle Precognition", nowait = true, remap = false },
+	{
+		"<leader>tp",
+		function()
+			require("precognition").toggle()
+		end,
+		desc = "Toggle Precognition",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>tm",
+		function()
+			require("render-markdown").toggle()
+		end,
+		desc = "Toggle Markdown Render",
+		nowait = true,
+		remap = false,
+	},
 	{ "<leader>s", group = "Search", nowait = true, remap = false },
 	{ "<leader>sr", "<cmd>SReplaceAndSave<cr>", desc = "Search, Replace, Save", nowait = true, remap = false },
 	{ "<leader>n", group = "Notes", nowait = true, remap = false },
