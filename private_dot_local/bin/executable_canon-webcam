@@ -1,0 +1,139 @@
+#!/bin/bash
+
+PID_FILE="$HOME/canon-webcam.pid"
+LOG_FILE="$HOME/canon-webcam.log"
+
+show_usage() {
+    echo "Usage: $(basename $0) {start|stop|status|restart}"
+    echo ""
+    echo "Commands:"
+    echo "  start   - Start Canon webcam"
+    echo "  stop    - Stop Canon webcam"
+    echo "  status  - Show Canon webcam status"
+    echo "  restart - Restart Canon webcam"
+}
+
+check_dependencies() {
+    local missing_deps=()
+    
+    if ! command -v gphoto2 &> /dev/null; then
+        missing_deps+=("gphoto2")
+    fi
+    
+    if ! command -v ffmpeg &> /dev/null; then
+        missing_deps+=("ffmpeg")
+    fi
+    
+    if ! lsmod | grep -q v4l2loopback; then
+        if ! modinfo v4l2loopback &> /dev/null; then
+            missing_deps+=("v4l2loopback-dkms")
+        fi
+    fi
+    
+    if [ ${#missing_deps[@]} -gt 0 ]; then
+        echo "Error: Missing dependencies:"
+        for dep in "${missing_deps[@]}"; do
+            echo "  - $dep"
+        done
+        echo ""
+        echo "Install missing dependencies:"
+        echo "  sudo pacman -S ${missing_deps[*]}"
+        return 1
+    fi
+    
+    return 0
+}
+
+start_webcam() {
+    if ! check_dependencies; then
+        return 1
+    fi
+    
+    if [ -f "$PID_FILE" ]; then
+        PID=$(cat "$PID_FILE")
+        if ps -p $PID > /dev/null; then
+            echo "Canon webcam already running (PID: $PID)"
+            return 1
+        fi
+    fi
+
+    sudo killall gvfs-gphoto2-volume-monitor 2>/dev/null
+    sudo pkill gphoto2 2>/dev/null
+
+    sudo modprobe -r v4l2loopback 2>/dev/null
+    sudo modprobe v4l2loopback devices=1 video_nr=2 card_label="Canon Webcam"
+
+    sleep 2
+    
+    sudo fuser -k /dev/video2 2>/dev/null || true
+    sleep 1
+
+    echo "$(date): Starting Canon webcam..." >> "$LOG_FILE"
+    
+    (gphoto2 --stdout --capture-movie | ffmpeg -f mjpeg -i - -pix_fmt yuv420p -f v4l2 /dev/video2) >> "$LOG_FILE" 2>&1 &
+
+    echo $! > "$PID_FILE"
+    echo "Canon webcam started! PID: $(cat $PID_FILE)"
+}
+
+stop_webcam() {
+    if [ -f "$PID_FILE" ]; then
+        PID=$(cat "$PID_FILE")
+        if ps -p $PID > /dev/null; then
+            kill $PID
+            echo "Stopped Canon webcam (PID: $PID)"
+        else
+            echo "Process not running"
+        fi
+        rm "$PID_FILE"
+    else
+        echo "No PID file found"
+    fi
+
+    sudo pkill gphoto2 2>/dev/null
+    sudo pkill ffmpeg 2>/dev/null
+}
+
+status_webcam() {
+    if [ -f "$PID_FILE" ]; then
+        PID=$(cat "$PID_FILE")
+        if ps -p $PID > /dev/null; then
+            echo "Canon webcam is running (PID: $PID)"
+            if [ -f "$LOG_FILE" ]; then
+                echo "Recent log entries:"
+                tail -5 "$LOG_FILE"
+            fi
+        else
+            echo "Canon webcam is not running (stale PID file)"
+        fi
+    else
+        echo "Canon webcam is not running"
+    fi
+}
+
+restart_webcam() {
+    echo "Restarting Canon webcam..."
+    stop_webcam
+    sleep 2
+    start_webcam
+}
+
+# Main script logic
+case "$1" in
+    start)
+        start_webcam
+        ;;
+    stop)
+        stop_webcam
+        ;;
+    status)
+        status_webcam
+        ;;
+    restart)
+        restart_webcam
+        ;;
+    *)
+        show_usage
+        exit 1
+        ;;
+esac
