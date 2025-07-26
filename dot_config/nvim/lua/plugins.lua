@@ -32,6 +32,8 @@ require("plugins.notify")
 require("plugins.supermaven")
 require("plugins.webdav")
 require("plugins.render-markdown")
+require("plugins.vim-css-color")
+require("plugins.emmet")
 
 require("lazy").setup(plugins)
 

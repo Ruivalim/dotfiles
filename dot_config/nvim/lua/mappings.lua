@@ -19,6 +19,7 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", {})
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {})
 vim.keymap.set("n", "s", '<cmd>lua require("flash").jump()<cr>', {})
 
+vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy selection to clipboard" })
 local clipboard_enabled = false
 vim.keymap.set("n", "<leader>tc", function()

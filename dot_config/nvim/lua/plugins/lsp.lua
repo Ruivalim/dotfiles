@@ -16,6 +16,10 @@ table.insert(plugins, {
 			"helm_ls",
 			"yamlls",
 			"svelte",
+			"emmet_language_server",
+			"cssls",
+			"css_variables",
+			"dockerls",
 		},
 	},
 })
@@ -59,6 +63,10 @@ table.insert(after_load, function()
 	})
 	lspconfig.svelte.setup({})
 	lspconfig.yamlls.setup({})
+	lspconfig.emmet_language_server.setup({})
+	lspconfig.cssls.setup({})
+	lspconfig.css_variables.setup({})
+	lspconfig.dockerls.setup({})
 
 	vim.opt.completeopt = "menu,menuone,noselect"
 end)
