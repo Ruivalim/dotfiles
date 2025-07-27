@@ -275,12 +275,3 @@ scrollbar slider {
 scrollbar slider:hover {
   opacity: 0.8;
 }
-
-#custom-tailscale {
-  letter-spacing: 3px;
-  font-size: 12px;
-}
-
-#custom-tailscale > span {
-  color: red;
-}

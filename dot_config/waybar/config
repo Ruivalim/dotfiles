@@ -6,13 +6,10 @@
     "modules-center": ["privacy", "clock",  "memory", "cpu"],
     "modules-right": ["tray", "custom/dunst", "wireplumber", "custom/bluetooth", "custom/tailscale", "network"],
     "hyprland/workspaces": {
-      "format": "{name}: <span>{icon}</span>",
+      "format": "<span weight='{icon}'>\uf111</span>",
       "format-icons": {
-        "1": "\uf269",
-        "2": "\uf6e2",
-        "3": "\uf02d",
-        "4": "\uf1bc",
-        "default": "\uf2d0"
+        "default": "normal",
+        "active": "bold"
       },
     },
     "clock": {
