@@ -3,4 +3,4 @@ selection-background = #e0def4
 foreground = #e0def4
 selection-foreground = #1f1d2e
 
-command = /usr/local/bin/fish --login --interactive
+keybind = shift+enter=text:\n

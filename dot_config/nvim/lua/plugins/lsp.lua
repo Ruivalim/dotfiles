@@ -63,7 +63,19 @@ table.insert(after_load, function()
 	})
 	lspconfig.svelte.setup({})
 	lspconfig.yamlls.setup({})
-	lspconfig.emmet_language_server.setup({})
+	lspconfig.emmet_language_server.setup({
+		filetypes = {
+			"html",
+			"css",
+			"scss",
+			"javascript",
+			"javascriptreact",
+			"typescriptreact",
+			"svelte",
+			"vue",
+			"jsp",
+		},
+	})
 	lspconfig.cssls.setup({})
 	lspconfig.css_variables.setup({})
 	lspconfig.dockerls.setup({})
