@@ -286,3 +286,8 @@ screen_reset () {
 screen_fhd () {
   hyprctl keyword monitor ,1920x1080@60,0x0,1
 }
+
+oxker () {
+  docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock:ro --pull=always mrjackwills/oxker
+}
+
