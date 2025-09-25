@@ -34,8 +34,17 @@ require("plugins.webdav")
 require("plugins.render-markdown")
 require("plugins.vim-css-color")
 require("plugins.emmet")
+require("plugins.tailwind")
+require("plugins.diagnostics")
+require("plugins.snippets")
+require("plugins.react")
+require("plugins.navigation")
 
-require("lazy").setup(plugins)
+require("lazy").setup(plugins, {
+	rocks = {
+		enabled = false,
+	},
+})
 
 for _, f in ipairs(after_load) do
 	f()

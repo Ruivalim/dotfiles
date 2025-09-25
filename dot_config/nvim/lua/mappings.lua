@@ -114,7 +114,7 @@ wk.add({
 	{ "<leader>l", group = "LSP", nowait = true, remap = false },
 	{ "<leader>ld", vim.lsp.buf.definition, desc = "Go to Definition", nowait = true, remap = false },
 	{ "<leader>lr", vim.lsp.buf.references, desc = "Find References", nowait = true, remap = false },
-	{ "<leader>li", vim.lsp.buf.implementation, desc = "Go to Implementation", nowait = true, remap = false },
+	{ "<leader>lI", vim.lsp.buf.implementation, desc = "Go to Implementation", nowait = true, remap = false },
 	{ "<leader>lt", vim.lsp.buf.type_definition, desc = "Type Definition", nowait = true, remap = false },
 	{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover Info", nowait = true, remap = false },
 	{ "<leader>la", vim.lsp.buf.code_action, desc = "Code Actions", nowait = true, remap = false },
@@ -127,4 +127,18 @@ wk.add({
 	{ "<leader>dd", vim.diagnostic.open_float, desc = "Show Diagnostics", nowait = true, remap = false },
 	{ "<leader>dn", vim.diagnostic.goto_next, desc = "Next Diagnostic", nowait = true, remap = false },
 	{ "<leader>dp", vim.diagnostic.goto_prev, desc = "Previous Diagnostic", nowait = true, remap = false },
+	{
+		"<leader>dw",
+		"<cmd>Trouble diagnostics toggle<cr>",
+		desc = "Workspace Diagnostics",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>db",
+		"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+		desc = "Buffer Diagnostics",
+		nowait = true,
+		remap = false,
+	},
 })

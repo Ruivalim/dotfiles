@@ -291,3 +291,7 @@ oxker () {
   docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock:ro --pull=always mrjackwills/oxker
 }
 
+mdl () {
+  python3 -m mangadex_downloader "$@" -lang pt-br --save-as "raw-volume"
+  #python3 -m mangadex_downloader "$@" -lang pt-br --save-as "cbz-volume" --use-volume-cover
+}
