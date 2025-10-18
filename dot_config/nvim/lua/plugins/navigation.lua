@@ -1,22 +1,4 @@
 table.insert(plugins, {
-	"christoomey/vim-tmux-navigator",
-	cmd = {
-		"TmuxNavigateLeft",
-		"TmuxNavigateDown",
-		"TmuxNavigateUp",
-		"TmuxNavigateRight",
-		"TmuxNavigatePrevious",
-	},
-	keys = {
-		{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-		{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-		{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-		{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-		{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-	},
-})
-
-table.insert(plugins, {
 	"folke/flash.nvim",
 	event = "VeryLazy",
 	opts = {
@@ -147,10 +129,18 @@ table.insert(plugins, {
 		require("leap").opts.equivalence_classes = { " \t\r\n" }
 
 		-- Create custom mappings that don't conflict
-		vim.keymap.set("n", "gl", function() require("leap").leap() end, { desc = "Leap forward" })
-		vim.keymap.set("n", "gL", function() require("leap").leap({ backward = true }) end, { desc = "Leap backward" })
-		vim.keymap.set("x", "gl", function() require("leap").leap() end, { desc = "Leap forward" })
-		vim.keymap.set("x", "gL", function() require("leap").leap({ backward = true }) end, { desc = "Leap backward" })
+		vim.keymap.set("n", "gl", function()
+			require("leap").leap()
+		end, { desc = "Leap forward" })
+		vim.keymap.set("n", "gL", function()
+			require("leap").leap({ backward = true })
+		end, { desc = "Leap backward" })
+		vim.keymap.set("x", "gl", function()
+			require("leap").leap()
+		end, { desc = "Leap forward" })
+		vim.keymap.set("x", "gL", function()
+			require("leap").leap({ backward = true })
+		end, { desc = "Leap backward" })
 	end,
 })
 

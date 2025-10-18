@@ -46,8 +46,5 @@ else
 	vim.cmd.colorscheme("default")
 end
 
--- disable precognition from start
-require("precognition").toggle()
-
 -- disable markdown render from start
 require("render-markdown").toggle()

@@ -1,12 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- <c-p> on oil to preview file
--- ciw delete current word
--- :vplit to vertical split
--- :split to horizontal split
--- <c-w> + hjkl to move between splits
--- <c-w> + +-<> to resize splits
 function _G.check_back_space()
 	local col = vim.fn.col(".") - 1
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
@@ -18,10 +12,11 @@ vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", {})
 vim.keymap.set("n", "<C-u>", "<C-u>zz", {})
 vim.keymap.set("n", "s", '<cmd>lua require("flash").jump()<cr>', {})
-
 vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Copy selection to clipboard" })
+
 local clipboard_enabled = false
+
 vim.keymap.set("n", "<leader>tc", function()
 	if clipboard_enabled then
 		vim.opt.clipboard = ""
@@ -36,6 +31,11 @@ end, { desc = "Toggle clipboard" })
 
 local wk = require("which-key")
 local global_note = require("global-note")
+
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>" .. i, "<Cmd>BufferGoto " .. i .. "<CR>")
+end
+
 wk.add({
 	{ "<leader>b", group = "Buffer", nowait = true, remap = false },
 	{ "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close", nowait = true, remap = false },
@@ -141,4 +141,40 @@ wk.add({
 		nowait = true,
 		remap = false,
 	},
+	{
+		"<leader>fp",
+		":Telescope projects<CR>",
+		desc = "Find Projects",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>pp",
+		":Telescope projects<CR>",
+		desc = "Switch Project",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>fw",
+		function()
+			require("telescope.builtin").find_files({
+				prompt_title = "Work Projects",
+				cwd = "~/work",
+				search_dirs = { "~/work" },
+			})
+		end,
+		desc = "Find in Work Projects",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>h",
+		":Dashboard<CR>",
+		desc = "Open Dashboard",
+		nowait = true,
+		remap = false,
+	},
 })
+
+require("neovide")

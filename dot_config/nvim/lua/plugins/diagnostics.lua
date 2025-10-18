@@ -36,7 +36,6 @@ table.insert(plugins, {
 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	config = function()
 		require("lsp_lines").setup()
-		-- Disable virtual_text since it's redundant due to lsp_lines
 		vim.diagnostic.config({
 			virtual_text = false,
 		})
@@ -44,9 +43,8 @@ table.insert(plugins, {
 })
 
 table.insert(after_load, function()
-	-- Enhanced diagnostic configuration
 	vim.diagnostic.config({
-		virtual_text = false, -- Disabled because we use lsp_lines
+		virtual_text = false,
 		signs = true,
 		underline = true,
 		update_in_insert = false,
@@ -60,7 +58,6 @@ table.insert(after_load, function()
 		},
 	})
 
-	-- Custom diagnostic signs using the modern API
 	local signs = {
 		Error = " ",
 		Warn = " ",
@@ -68,7 +65,6 @@ table.insert(after_load, function()
 		Info = " ",
 	}
 
-	-- Configure diagnostic signs using the modern vim.diagnostic.config API
 	vim.diagnostic.config({
 		signs = {
 			text = {
@@ -80,7 +76,6 @@ table.insert(after_load, function()
 		},
 	})
 
-	-- Auto-show diagnostics on cursor hold
 	vim.api.nvim_create_autocmd("CursorHold", {
 		callback = function()
 			local opts = {

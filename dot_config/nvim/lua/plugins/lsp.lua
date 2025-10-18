@@ -21,7 +21,6 @@ table.insert(plugins, {
 			"css_variables",
 			"dockerls",
 			"jdtls",
-			"tailwindcss",
 		},
 		automatic_installation = true,
 	},
@@ -112,66 +111,9 @@ table.insert(after_load, function()
 			"jsp",
 		},
 	}
-
-	vim.lsp.config.jdtls = {
-		settings = {
-			java = {
-				eclipse = {
-					downloadSources = true,
-				},
-				configuration = {
-					updateBuildConfiguration = "interactive",
-				},
-				maven = {
-					downloadSources = true,
-				},
-				implementationsCodeLens = {
-					enabled = true,
-				},
-				referencesCodeLens = {
-					enabled = true,
-				},
-				references = {
-					includeDecompiledSources = true,
-				},
-				format = {
-					enabled = true,
-					settings = {
-						url = vim.fn.stdpath("config") .. "/lang-servers/intellij-java-google-style.xml",
-						profile = "GoogleStyle",
-					},
-				},
-			},
-			signatureHelp = { enabled = true },
-			completion = {
-				favoriteStaticMembers = {
-					"org.hamcrest.MatcherAssert.assertThat",
-					"org.hamcrest.Matchers.*",
-					"org.hamcrest.CoreMatchers.*",
-					"org.junit.jupiter.api.Assertions.*",
-					"java.util.Objects.requireNonNull",
-					"java.util.Objects.requireNonNullElse",
-					"org.mockito.Mockito.*",
-				},
-			},
-			contentProvider = { preferred = "fernflower" },
-			extendedClientCapabilities = {
-				progressReportProvider = false,
-			},
-			sources = {
-				organizeImports = {
-					starThreshold = 9999,
-					staticStarThreshold = 9999,
-				},
-			},
-			codeGeneration = {
-				toString = {
-					template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-				},
-				useBlocks = true,
-			},
-		},
-	}
-
-	vim.opt.completeopt = "menu,menuone,noselect"
 end)
+
+table.insert(plugins, {
+	"mfussenegger/nvim-jdtls",
+	ft = "java",
+})

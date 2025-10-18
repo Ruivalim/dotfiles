@@ -17,10 +17,11 @@ vim.opt.signcolumn = "yes"
 vim.opt.undofile = true
 vim.opt.laststatus = 3
 vim.opt.termguicolors = true
+vim.opt.relativenumber = true
 
 vim.opt.undodir = vim.fn.expand("~/.undo_history")
 
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+-- vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 local group = vim.api.nvim_create_augroup("fmt", { clear = true })
 
