@@ -155,6 +155,22 @@ table.insert(plugins, {
 					{
 						icon = "  ",
 						icon_hl = "@variable",
+						desc = "Add Project",
+						group = "Label",
+						action = [[lua vim.ui.input({ prompt = 'Project path: ', default = vim.fn.expand('~'), completion = 'dir' }, function(path) if path then local expanded = vim.fn.expand(path); local data_path = vim.fn.stdpath('data'); local history_path = data_path .. '/project_nvim/project_history'; local existing = {}; if vim.fn.filereadable(history_path) == 1 then for line in io.lines(history_path) do if line ~= '' and line ~= expanded then table.insert(existing, line) end end end; vim.fn.mkdir(vim.fn.fnamemodify(history_path, ':h'), 'p'); local file = io.open(history_path, 'w'); if file then file:write(expanded .. '\n'); for _, proj in ipairs(existing) do file:write(proj .. '\n') end; file:close() end; vim.cmd('cd ' .. expanded); print('Added project: ' .. expanded) end end)]],
+						key = "a",
+					},
+					{
+						icon = "  ",
+						icon_hl = "@variable",
+						desc = "Remove Project",
+						group = "Error",
+						action = [[lua local data_path = vim.fn.stdpath('data'); local history_path = data_path .. '/project_nvim/project_history'; local projects = {}; if vim.fn.filereadable(history_path) == 1 then for line in io.lines(history_path) do if line ~= '' then table.insert(projects, line) end end end; if #projects == 0 then print('No projects in history') return end; vim.ui.select(projects, { prompt = 'Remove project: ' }, function(choice) if choice then local remaining = {}; for _, proj in ipairs(projects) do if proj ~= choice then table.insert(remaining, proj) end end; local file = io.open(history_path, 'w'); if file then for _, proj in ipairs(remaining) do file:write(proj .. '\n') end; file:close(); print('Removed: ' .. choice) end end end)]],
+						key = "r",
+					},
+					{
+						icon = "  ",
+						icon_hl = "@variable",
 						desc = "Find Files",
 						group = "Label",
 						action = "Telescope find_files",
