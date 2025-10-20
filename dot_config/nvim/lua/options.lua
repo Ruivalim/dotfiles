@@ -18,6 +18,9 @@ vim.opt.undofile = true
 vim.opt.laststatus = 3
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
+-- vim.opt.foldmethod = "indent"
+-- vim.opt.foldenable = false
+-- vim.opt.foldlevel = 99
 
 vim.opt.undodir = vim.fn.expand("~/.undo_history")
 

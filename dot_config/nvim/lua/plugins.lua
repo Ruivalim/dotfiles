@@ -36,6 +36,7 @@ require("plugins.react")
 require("plugins.navigation")
 require("plugins.dashboard")
 require("plugins.scrollbar")
+require("plugins.origami")
 
 require("lazy").setup(plugins, {
 	rocks = {
