@@ -124,6 +124,87 @@ table.insert(plugins, {
 
 		-- Run discovery after telescope extension is loaded
 		vim.defer_fn(discover_work_projects, 200)
+
+		-- Helper function to add folder to browse history
+		local function add_to_browse_history(path)
+			local data_path = vim.fn.stdpath("data")
+			local history_path = data_path .. "/browse_history"
+
+			-- Read existing history
+			local existing = {}
+			if vim.fn.filereadable(history_path) == 1 then
+				for line in io.lines(history_path) do
+					if line ~= "" and line ~= path then
+						table.insert(existing, line)
+					end
+				end
+			end
+
+			-- Write back with new path at the top (limit to 50 entries)
+			vim.fn.mkdir(vim.fn.fnamemodify(history_path, ":h"), "p")
+			local file = io.open(history_path, "w")
+			if file then
+				file:write(path .. "\n")
+				for i, proj in ipairs(existing) do
+					if i >= 50 then
+						break
+					end
+					file:write(proj .. "\n")
+				end
+				file:close()
+			end
+		end
+
+		-- Create Telescope picker for browse history
+		local pickers = require("telescope.pickers")
+		local finders = require("telescope.finders")
+		local conf = require("telescope.config").values
+		local actions = require("telescope.actions")
+		local action_state = require("telescope.actions.state")
+
+		local function browse_history_picker()
+			local data_path = vim.fn.stdpath("data")
+			local history_path = data_path .. "/browse_history"
+			local history = {}
+
+			if vim.fn.filereadable(history_path) == 1 then
+				for line in io.lines(history_path) do
+					if line ~= "" and vim.fn.isdirectory(line) == 1 then
+						table.insert(history, line)
+					end
+				end
+			end
+
+			if #history == 0 then
+				print("No browse history yet")
+				return
+			end
+
+			pickers
+				.new({}, {
+					prompt_title = "Browse History",
+					finder = finders.new_table({
+						results = history,
+					}),
+					sorter = conf.generic_sorter({}),
+					attach_mappings = function(prompt_bufnr, map)
+						actions.select_default:replace(function()
+							actions.close(prompt_bufnr)
+							local selection = action_state.get_selected_entry()
+							if selection then
+								vim.cmd("cd " .. selection[1])
+								require("oil").open(selection[1])
+								print("Opened: " .. selection[1])
+							end
+						end)
+						return true
+					end,
+				})
+				:find()
+		end
+
+		-- Create command for browse history
+		vim.api.nvim_create_user_command("BrowseHistory", browse_history_picker, {})
 	end,
 })
 
@@ -136,6 +217,36 @@ table.insert(plugins, {
 	},
 	config = function()
 		local db = require("dashboard")
+
+		-- Helper function to add folder to browse history
+		local function add_to_browse_history(path)
+			local data_path = vim.fn.stdpath("data")
+			local history_path = data_path .. "/browse_history"
+
+			-- Read existing history
+			local existing = {}
+			if vim.fn.filereadable(history_path) == 1 then
+				for line in io.lines(history_path) do
+					if line ~= "" and line ~= path then
+						table.insert(existing, line)
+					end
+				end
+			end
+
+			-- Write back with new path at the top (limit to 50 entries)
+			vim.fn.mkdir(vim.fn.fnamemodify(history_path, ":h"), "p")
+			local file = io.open(history_path, "w")
+			if file then
+				file:write(path .. "\n")
+				for i, proj in ipairs(existing) do
+					if i >= 50 then
+						break
+					end
+					file:write(proj .. "\n")
+				end
+				file:close()
+			end
+		end
 
 		db.setup({
 			theme = "hyper",
@@ -155,9 +266,25 @@ table.insert(plugins, {
 					{
 						icon = "  ",
 						icon_hl = "@variable",
+						desc = "Browse Folder",
+						group = "DiagnosticHint",
+						action = [[lua vim.ui.input({ prompt = 'Browse folder: ', default = '/', completion = 'dir' }, function(path) if path then local expanded = vim.fn.expand(path); if vim.fn.isdirectory(expanded) == 1 then local data_path = vim.fn.stdpath('data'); local history_path = data_path .. '/browse_history'; local existing = {}; if vim.fn.filereadable(history_path) == 1 then for line in io.lines(history_path) do if line ~= '' and line ~= expanded then table.insert(existing, line) end end end; vim.fn.mkdir(vim.fn.fnamemodify(history_path, ':h'), 'p'); local file = io.open(history_path, 'w'); if file then file:write(expanded .. '\n'); for i, proj in ipairs(existing) do if i >= 50 then break end; file:write(proj .. '\n') end; file:close() end; vim.cmd('cd ' .. expanded); require('oil').open(expanded); print('Opened: ' .. expanded) else print('Not a valid directory') end end end)]],
+						key = "b",
+					},
+					{
+						icon = "  ",
+						icon_hl = "@variable",
+						desc = "Browse History",
+						group = "DiagnosticHint",
+						action = "BrowseHistory",
+						key = "h",
+					},
+					{
+						icon = "  ",
+						icon_hl = "@variable",
 						desc = "Add Project",
 						group = "Label",
-						action = [[lua vim.ui.input({ prompt = 'Project path: ', default = vim.fn.expand('~'), completion = 'dir' }, function(path) if path then local expanded = vim.fn.expand(path); local data_path = vim.fn.stdpath('data'); local history_path = data_path .. '/project_nvim/project_history'; local existing = {}; if vim.fn.filereadable(history_path) == 1 then for line in io.lines(history_path) do if line ~= '' and line ~= expanded then table.insert(existing, line) end end end; vim.fn.mkdir(vim.fn.fnamemodify(history_path, ':h'), 'p'); local file = io.open(history_path, 'w'); if file then file:write(expanded .. '\n'); for _, proj in ipairs(existing) do file:write(proj .. '\n') end; file:close() end; vim.cmd('cd ' .. expanded); print('Added project: ' .. expanded) end end)]],
+						action = [[lua vim.ui.input({ prompt = 'Project path: ', default = '/', completion = 'dir' }, function(path) if path then local expanded = vim.fn.expand(path); local data_path = vim.fn.stdpath('data'); local history_path = data_path .. '/project_nvim/project_history'; local existing = {}; if vim.fn.filereadable(history_path) == 1 then for line in io.lines(history_path) do if line ~= '' and line ~= expanded then table.insert(existing, line) end end end; vim.fn.mkdir(vim.fn.fnamemodify(history_path, ':h'), 'p'); local file = io.open(history_path, 'w'); if file then file:write(expanded .. '\n'); for _, proj in ipairs(existing) do file:write(proj .. '\n') end; file:close() end; vim.cmd('cd ' .. expanded); print('Added project: ' .. expanded) end end)]],
 						key = "a",
 					},
 					{

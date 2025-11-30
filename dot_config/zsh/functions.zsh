@@ -1,6 +1,7 @@
 zhelp () {
   echo "c => cat file | pbcopy"
   echo "update_abi => abi leaves && abi cask"
+  echo "cazs => switch azure subscription"
   echo ""
   echo "== Pod functions =="
   echo "kgp => kubectl get pod"
@@ -294,4 +295,54 @@ oxker () {
 mdl () {
   python3 -m mangadex_downloader "$@" -lang pt-br --save-as "raw-volume"
   #python3 -m mangadex_downloader "$@" -lang pt-br --save-as "cbz-volume" --use-volume-cover
+}
+
+cazs() {
+    if ! command -v az &> /dev/null; then
+        echo "Error: Azure CLI is not installed"
+        return 1
+    fi
+
+    if ! az account show &> /dev/null; then
+        echo "Error: Not logged in to Azure. Please run 'az login' first."
+        return 1
+    fi
+
+    if [ -n "$1" ]; then
+        if az account set --subscription "$1" 2>/dev/null; then
+            echo "✓ Switched to subscription: $(az account show --query name -o tsv)"
+            az account show --output table
+        else
+            echo "Error: Could not find subscription matching '$1'"
+            echo "Available subscriptions:"
+            az account list --query "[].{Name:name, ID:id, State:state}" --output table
+        fi
+        return
+    fi
+
+    if ! command -v fzf &> /dev/null; then
+        echo "Error: fzf is not installed. Install it with:"
+        echo "  Ubuntu/Debian: sudo apt install fzf"
+        echo "  macOS: brew install fzf"
+        echo "  Or use: az-sub <subscription-name>"
+        return 1
+    fi
+
+    current_sub=$(az account show --query name -o tsv 2>/dev/null)
+
+    selected_sub=$(az account list --output table | tail -n +3 | fzf --header="Select Azure Subscription (Current: $current_sub)" --prompt="Subscription > ")
+    
+    if [ -z "$selected_sub" ]; then
+        echo "No subscription selected."
+        return 1
+    fi
+    
+    echo $selected_sub
+    
+    selected_name=$(echo "$selected_sub" | awk '{print $1}')
+    selected_id=$(echo "$selected_sub" | awk '{print $(NF-3)}')
+
+    echo "✓ Switched to subscription: $selected_id"
+
+    az account set --subscription "$selected_id" 
 }

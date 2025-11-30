@@ -123,6 +123,7 @@ wk.add({
 	{ "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep String", nowait = true, remap = false },
 	{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find Buffers", nowait = true, remap = false },
 	{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags", nowait = true, remap = false },
+	{ "<leader>v", "<cmd>CHADopen --always-focus<cr>", nowait = true, remap = false },
 	{ "<leader>d", group = "Diagnostics", nowait = true, remap = false },
 	{ "<leader>dd", vim.diagnostic.open_float, desc = "Show Diagnostics", nowait = true, remap = false },
 	{ "<leader>dn", vim.diagnostic.goto_next, desc = "Next Diagnostic", nowait = true, remap = false },

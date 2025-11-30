@@ -37,6 +37,7 @@ require("plugins.navigation")
 require("plugins.dashboard")
 require("plugins.scrollbar")
 require("plugins.origami")
+require("plugins.chadtree")
 
 require("lazy").setup(plugins, {
 	rocks = {
