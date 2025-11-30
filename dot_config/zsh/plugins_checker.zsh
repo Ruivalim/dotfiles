@@ -16,11 +16,11 @@ if ! path_exists "$zsh_as"; then
 fi
 
 # ZSH NVM
-zsh_nvm="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
-
-if ! path_exists "$zsh_nvm"; then
-  git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-fi
+# zsh_nvm="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
+#
+# if ! path_exists "$zsh_nvm"; then
+#   git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+# fi
 
 zsh_10k="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
