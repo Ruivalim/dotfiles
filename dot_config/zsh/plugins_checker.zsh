@@ -1,13 +1,3 @@
-path_exists() {
-    local path="$1"
-
-    if [ -e "$path" ]; then
-        return 0  
-    else
-        return 1 
-    fi
-}
-
 # ZSH Auto-suggestions
 zsh_as="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 

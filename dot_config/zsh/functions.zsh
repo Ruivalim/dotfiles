@@ -1,3 +1,13 @@
+path_exists() {
+    local path="$1"
+
+    if [ -e "$path" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 zhelp () {
   echo "c => cat file | pbcopy"
   echo "update_abi => abi leaves && abi cask"
@@ -158,26 +168,16 @@ update_abi () {
   abi cask -f "brew-cask-$current_date"
 }
 
-path_exists() {
-    local path="$1"
-
-    if [ -e "$path" ]; then
-        return 0  
-    else
-        return 1 
-    fi
-}
-
 ## Lazy load nvm when needed
 ## https://www.reddit.com/r/node/comments/4tg5jg/comment/d5ib9fs/?rdt=37136
-if path_exists "~/.nvm/versions/node"; then
-  declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+if path_exists "$HOME/.nvm/versions/node"; then
+  declare -a NODE_GLOBALS=(`find $HOME/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
   NODE_GLOBALS+=("node")
   NODE_GLOBALS+=("nvm")
 
 load_nvm () {
-    export NVM_DIR=~/.nvm
+    export NVM_DIR=$HOME/.nvm
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 }
 
@@ -186,12 +186,129 @@ for cmd in "${NODE_GLOBALS[@]}"; do
 done
 fi
 
+## Lazy load SDKMAN when needed
+export SDKMAN_DIR="$HOME/.sdkman"
+
+if path_exists "$SDKMAN_DIR"; then
+  # Common SDKMAN commands to intercept
+  declare -a SDKMAN_GLOBALS=("sdk" "java" "gradle" "maven" "mvn" "kotlin" "scala" "groovy" "sbt")
+
+  load_sdkman() {
+    [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  }
+
+  for cmd in "${SDKMAN_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${SDKMAN_GLOBALS}; load_sdkman; ${cmd} \$@ }"
+  done
+fi
+
+## Lazy load rbenv when needed
+if path_exists "$HOME/.rbenv"; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+
+  # Common Ruby commands to intercept
+  declare -a RUBY_GLOBALS=("ruby" "gem" "bundle" "bundler" "rake" "rails" "irb" "rbenv")
+
+  load_rbenv() {
+    eval "$(rbenv init -)"
+  }
+
+  for cmd in "${RUBY_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${RUBY_GLOBALS}; load_rbenv; ${cmd} \$@ }"
+  done
+fi
+
 edit_nvim () {
   nvim ~/.config/nvim
 }
 
 edit_zsh () {
   nvim ~/.config/zsh
+}
+
+## Lazy install/update h CLI
+h() {
+  local h_bin="$HOME/.local/bin/h"
+  local h_version_file="$HOME/.local/bin/.h_version"
+  local h_repo="Ruivalim/h"
+
+  # Detect platform
+  local platform=""
+  case "$(uname -s)" in
+    Darwin) platform="darwin-arm64" ;;
+    Linux) platform="linux-x64" ;;
+    *) echo "Unsupported platform: $(uname -s)"; return 1 ;;
+  esac
+
+  # Function to get latest version from GitHub
+  get_latest_version() {
+    curl -s "https://api.github.com/repos/$h_repo/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
+  }
+
+  # Function to download and install h
+  install_h() {
+    local version="$1"
+    echo "Installing h CLI version $version..."
+
+    local download_url="https://github.com/$h_repo/releases/download/$version/h-$platform"
+
+    mkdir -p "$HOME/.local/bin"
+
+    if curl -fsSL "$download_url" -o "$h_bin"; then
+      chmod +x "$h_bin"
+      echo "$version" > "$h_version_file"
+      echo "✓ h CLI $version installed successfully!"
+    else
+      echo "✗ Failed to download h CLI"
+      return 1
+    fi
+  }
+
+  # Check if h binary exists
+  if ! command -v "$h_bin" &> /dev/null; then
+    local latest_version=$(get_latest_version)
+
+    if [ -z "$latest_version" ]; then
+      echo "✗ Could not fetch latest version from GitHub"
+      return 1
+    fi
+
+    install_h "$latest_version"
+  else
+    # Check for updates (only on explicit update command or periodically)
+    if [[ "$1" == "upgrade" ]] || [[ "$1" == "update" ]]; then
+      local current_version=""
+      if path_exists "$h_version_file"; then
+        current_version=$(cat "$h_version_file")
+      fi
+
+      local latest_version=$(get_latest_version)
+
+      if [ -z "$latest_version" ]; then
+        echo "✗ Could not check for updates"
+        return 1
+      fi
+
+      if [ "$current_version" != "$latest_version" ]; then
+        echo "Update available: $current_version → $latest_version"
+        echo -n "Do you want to upgrade? [y/N] "
+        read -r response
+        if [[ "$response" =~ ^[Yy]$ ]]; then
+          install_h "$latest_version"
+          return 0
+        else
+          echo "Upgrade cancelled"
+          return 0
+        fi
+      else
+        echo "✓ h CLI is up to date ($current_version)"
+        return 0
+      fi
+    fi
+  fi
+
+  # Execute the actual h command
+  "$h_bin" "$@"
 }
 
 # Additional kubectl functions for secrets and configmaps

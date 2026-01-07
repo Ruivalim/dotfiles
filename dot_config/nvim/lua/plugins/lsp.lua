@@ -21,6 +21,9 @@ table.insert(plugins, {
 			"css_variables",
 			"dockerls",
 			"jdtls",
+			"gopls",
+			"bashls",
+			"marksman",
 		},
 		automatic_installation = true,
 	},
@@ -109,6 +112,25 @@ table.insert(after_load, function()
 			"svelte",
 			"vue",
 			"jsp",
+		},
+	}
+
+	vim.lsp.config.yamlls = {
+		settings = {
+			yaml = {
+				validate = true, -- Precisa estar habilitado para ler configs locais
+				hover = true,
+				completion = true,
+				format = {
+					enable = true,
+				},
+				schemaStore = {
+					enable = false, -- Desabilita schemas automáticos da store
+					url = "", -- Desabilita URL padrão
+				},
+				schemas = {}, -- Vazio, mas permite configs locais
+				customTags = {}, -- Permite tags customizadas se definidas localmente
+			},
 		},
 	}
 end)

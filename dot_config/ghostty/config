@@ -3,4 +3,10 @@ selection-background = #e0def4
 foreground = #e0def4
 selection-foreground = #1f1d2e
 
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+# Restaurar tabs ao reabrir
+window-save-state = always
+
 keybind = shift+enter=text:\n

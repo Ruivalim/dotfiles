@@ -25,6 +25,8 @@ vim.opt.scrolloff = 8
 -- vim.opt.foldlevel = 99
 
 vim.opt.undodir = vim.fn.expand("~/.undo_history")
+vim.opt.exrc = true -- Habilita leitura de .nvim.lua local
+vim.opt.secure = true -- Segurança para arquivos locais
 
 -- vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 

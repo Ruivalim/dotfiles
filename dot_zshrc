@@ -37,9 +37,6 @@ source ~/.config/zsh/fzf.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/plugins_checker.zsh
 
-autoload -Uz compinit
-compinit
-
 if [ -e ~/.zshrc_paths ]
 then
   source ~/.zshrc_paths
@@ -51,25 +48,6 @@ fi
 
 # bun completions
 [ -s "/Users/ruivalim/.bun/_bun" ] && source "/Users/ruivalim/.bun/_bun"
-
-# bum
-export BUM_INSTALL="$HOME/.bum"
-export PATH="$BUM_INSTALL/bin:$PATH"
-
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(zoxide init zsh)"
 
@@ -84,8 +62,7 @@ esac
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/ruivalim/.docker/completions $fpath)
 autoload -Uz compinit

@@ -209,7 +209,7 @@ wk.add({
 	{ "<leader>lt", vim.lsp.buf.type_definition, desc = "Type Definition", nowait = true, remap = false },
 	{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover Info", nowait = true, remap = false },
 	{ "<leader>la", vim.lsp.buf.code_action, desc = "Code Actions", nowait = true, remap = false },
-	{ "<leader>ln", vim.lsp.buf.rename, desc = "Rename Symbol", nowait = true, remap = false },
+	{ "<leader>ln", ":IncRename ", desc = "Rename Symbol", nowait = true, remap = false },
 
 	-- Diagnostics
 	{ "<leader>d", group = "Diagnostics", nowait = true, remap = false },
@@ -238,6 +238,44 @@ wk.add({
 	{ "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diff View", nowait = true, remap = false },
 	{ "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File History", nowait = true, remap = false },
 	{ "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Close Diff View", nowait = true, remap = false },
+
+	-- Package Management (package.json / bun)
+	{ "<leader>pk", group = "Package", nowait = true, remap = false },
+	{
+		"<leader>pku",
+		"<cmd>lua require('package-info').update()<cr>",
+		desc = "Update Dependency",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>pkd",
+		"<cmd>lua require('package-info').delete()<cr>",
+		desc = "Delete Dependency",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>pki",
+		"<cmd>lua require('package-info').install()<cr>",
+		desc = "Install Dependency",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>pkc",
+		"<cmd>lua require('package-info').change_version()<cr>",
+		desc = "Change Version",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>pkt",
+		"<cmd>lua require('package-info').toggle()<cr>",
+		desc = "Toggle Package Info",
+		nowait = true,
+		remap = false,
+	},
 
 	-- Extras
 	{ "<leader>x", group = "Extras", nowait = true, remap = false },
