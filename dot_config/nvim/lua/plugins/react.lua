@@ -17,25 +17,7 @@ table.insert(plugins, {
 	end,
 })
 
-table.insert(plugins, {
-	"maxmellon/vim-jsx-pretty",
-	ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-})
-
-table.insert(plugins, {
-	"styled-components/vim-styled-components",
-	branch = "main",
-	ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-})
-
-table.insert(plugins, {
-	"David-Kunz/react-extract.nvim",
-	ft = { "javascriptreact", "typescriptreact" },
-	config = function()
-		require("react-extract").setup()
-	end,
-})
-
+-- Only one react-extract plugin needed
 table.insert(plugins, {
 	"napmn/react-extract.nvim",
 	ft = { "javascriptreact", "typescriptreact" },
@@ -49,9 +31,6 @@ table.insert(after_load, function()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 		callback = function()
-			-- Enable JSX syntax highlighting
-			vim.bo.syntax = "javascript.jsx"
-
 			-- Set local options for React development
 			vim.bo.tabstop = 2
 			vim.bo.shiftwidth = 2

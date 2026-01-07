@@ -2,25 +2,30 @@
 
 - **`:vsplit`**: Split the window vertically.
 - **`:split`**: Split the window horizontally.
-- **`<c-w> h`**: Move to the split on the left.
-- **`<c-w> j`**: Move to the split below.
-- **`<c-w> k`**: Move to the split above.
-- **`<c-w> l`**: Move to the split on the right.
-- **`<c-w> +`**: Increase the height of the current split.
-- **`<c-w> -`**: Decrease the height of the current split.
-- **`<c-w> >`**: Increase the width of the current split.
-- **`<c-w> <`**: Decrease the width of the current split.
+- **`<C-h>`**: Move to the split on the left.
+- **`<C-j>`**: Move to the split below.
+- **`<C-k>`**: Move to the split above.
+- **`<C-l>`**: Move to the split on the right.
+- **`<C-Up>`**: Increase the height of the current split.
+- **`<C-Down>`**: Decrease the height of the current split.
+- **`<C-Right>`**: Increase the width of the current split.
+- **`<C-Left>`**: Decrease the width of the current split.
+- **`<Esc>`**: Clear search highlight.
+- **`<C-s>`**: Save file (works in any mode).
+- **`<leader><leader>`**: Quick find files.
+- **`jk`**: Exit insert mode (instead of Esc).
 
 ## Insert Mode
 
-- **`<TAB>`**: If the completion menu is visible, select the next item; otherwise, check for backspace or refresh completion.
-- **`<S-TAB>`**: If the completion menu is visible, select the previous item; otherwise, perform a backspace.
-- **`<c-space>`**: Refresh the completion menu.
-- **`<cr>`**: If the completion menu is visible, confirm the selection; otherwise, insert a newline.
-- **`<c-j>`**: Expand or jump in snippets.
+- **`<TAB>`**: If the completion menu is visible, select the next item.
+- **`<S-TAB>`**: If the completion menu is visible, select the previous item.
+- **`<C-space>`**: Refresh the completion menu.
+- **`<CR>`**: If the completion menu is visible, confirm the selection.
+- **`<M-e>`**: Fast wrap with autopairs (wrap text with brackets/quotes).
 
 ## Normal Mode
 
+### Text Objects
 - **`ciw`**: Change the inner word.
 - **`ci(`**: Change the inner parentheses.
 - **`ci[`**: Change the inner brackets.
@@ -28,143 +33,207 @@
 - **`ci"`**: Change the inner quotes.
 - **`ci'`**: Change the inner single quotes.
 - **`ci<`**: Change the inner angle brackets.
+- **`cin)`**: Change inside NEXT ().
+- **`cil"`**: Change inside LAST ".
+- **`dan[`**: Delete around NEXT [].
+
+### Surround (ys, cs, ds)
+- **`ysiw"`**: Surround word with quotes.
+- **`ysiw)`**: Surround word with ().
+- **`yss"`**: Surround entire line with ".
+- **`ds"`**: Delete surrounding quotes.
+- **`ds)`**: Delete surrounding ().
+- **`cs"'`**: Change " to '.
+- **`cs)}`**: Change () to {}.
+
+### Navigation
 - **`K`**: Show hover information for the symbol under the cursor.
 - **`<C-d>`**: Scroll down half a page and center the cursor.
 - **`<C-u>`**: Scroll up half a page and center the cursor.
-- **`s`**: Jump to a location using the "flash" plugin.
-- **`<leader>ld`**: Go to the definition of the symbol under the cursor.
-- **`<leader>li`**: Go to the implementation of the symbol under the cursor.
-- **`<leader>lt`**: Go to the type definition of the symbol under the cursor.
-- **`<leader>lr`**: Show references to the symbol under the cursor.
-- **`<leader>la`**: Show code actions for the symbol under the cursor.
-- **`<leader>ln`**: Rename the symbol under the cursor.
-- **`<leader>lh`**: Show hover information for the symbol under the cursor.
-- **`<leader>dp`**: Go to the previous diagnostic.
-- **`<leader>dn`**: Go to the next diagnostic.
-- **`<leader>dd`**: Show diagnostic details in a floating window.
-- **`<leader>bc`**: Close the current buffer.
-- **`<leader>ba`**: Close all buffers except the current one.
+- **`s`**: Jump to a location using Flash.
+- **`S`**: Jump using Flash Treesitter (select code blocks).
+- **`n/N`**: Next/previous search result (centered).
+
+### Harpoon (Quick File Navigation)
+- **`<leader>a`**: Add current file to Harpoon.
+- **`<leader>m`**: Open Harpoon menu.
+- **`<M-1>` to `<M-5>`**: Jump to Harpoon file 1-5.
+- **`<M-[>`**: Previous Harpoon file.
+- **`<M-]>`**: Next Harpoon file.
+
+### File Explorers
+- **`<leader>o`**: Open Oil (quick file editing).
+- **`<leader>e`**: Toggle Neo-tree sidebar.
+- **`<leader>E`**: Reveal current file in Neo-tree.
+
+### LSP
+- **`<leader>ld`**: Go to definition.
+- **`<leader>lI`**: Go to implementation.
+- **`<leader>lt`**: Go to type definition.
+- **`<leader>lr`**: Find references.
+- **`<leader>la`**: Code actions.
+- **`<leader>ln`**: Rename symbol.
+- **`<leader>lh`**: Hover info.
+- **`<C-k>`**: Toggle function signature (while typing).
+
+### Glance (Peek definitions in popup)
+- **`gd`**: Glance definitions.
+- **`gr`**: Glance references.
+- **`gy`**: Glance type definitions.
+- **`gi`**: Glance implementations.
+
+### Diagnostics
+- **`<leader>dp`**: Previous diagnostic.
+- **`<leader>dn`**: Next diagnostic.
+- **`<leader>dd`**: Show diagnostic details.
+- **`<leader>dw`**: Workspace diagnostics (Trouble).
+- **`<leader>db`**: Buffer diagnostics (Trouble).
+
+### TODOs
+- **`]t`**: Next TODO comment.
+- **`[t`**: Previous TODO comment.
+- **`<leader>ft`**: Find TODOs (Telescope).
+- **`<leader>xt`**: TODOs in Trouble.
+
+### Buffers
+- **`<leader>1-9`**: Jump to buffer 1-9.
+- **`<leader>bc`**: Close current buffer.
+- **`<leader>ba`**: Close all buffers except current.
 - **`<leader>bj`**: Pick a buffer to jump to.
-- **`<leader>bn`**: Go to the next buffer.
-- **`<leader>bp`**: Go to the previous buffer.
-- **`<leader>ff`**: Find a file using Telescope.
-- **`<leader>fr`**: Open a recently used file using Telescope.
-- **`<leader>fg`**: Live grep using Telescope.
-- **`<leader>fs`**: Grep string using Telescope.
-- **`<leader>fb`**: Find buffers using Telescope.
-- **`<leader>fh`**: Help tags using Telescope.
-- **`<leader>o`**: Open the Oil plugin.
-- **`<leader>pl`**: Open the Lazy plugin manager.
-- **`<leader>pm`**: Open the Mason plugin manager.
-- **`<leader>u`**: Toggle the Mundo plugin.
-- **`<leader>tt`**: Toggle the integrated terminal.
-- **`<leader>sr`**: Search, replace, and save changes.
-- **`<leader>ng`**: Toggle global notes.
-- **`<leader>np`**: Toggle project-local notes.
-- **`<leader>nv`**: Toggle Vim notes.
+- **`<leader>bn`**: Next buffer.
+- **`<leader>bp`**: Previous buffer.
+
+### Files (Telescope)
+- **`<leader>ff`**: Find files.
+- **`<leader>fr`**: Recent files.
+- **`<leader>fg`**: Live grep.
+- **`<leader>fs`**: Grep string under cursor.
+- **`<leader>fb`**: Find buffers.
+- **`<leader>fh`**: Help tags.
+- **`<leader>fp`**: Find projects.
+- **`<leader>fw`**: Find in work projects.
+
+### Session Management (auto-session)
+- **`<leader>qs`**: Search sessions.
+- **`<leader>qS`**: Save session.
+- **`<leader>qr`**: Restore session.
+- **`<leader>qd`**: Delete session.
+- Sessions auto-save/restore when opening folders.
+
+### Plugins
+- **`<leader>pl`**: Open Lazy plugin manager.
+- **`<leader>pm`**: Open Mason.
+
+### Toggle
+- **`<leader>tt`**: Toggle terminal.
+- **`<leader>th`**: Toggle inlay hints (type hints).
 - **`<leader>tp`**: Toggle Precognition.
-- **`<leader>y`**: Copy selection to clipboard (visual mode).
+- **`<leader>tm`**: Toggle Markdown render.
 - **`<leader>tc`**: Toggle clipboard.
+
+### Search & Replace
+- **`<leader>sr`**: Search, replace, and save.
+
+### Notes
+- **`<leader>ng`**: Global notes.
+- **`<leader>np`**: Project notes.
+- **`<leader>nv`**: Vim notes.
+
+### Noice (Messages)
+- **`<leader>nl`**: Last message.
+- **`<leader>nh`**: Message history.
+- **`<leader>na`**: All messages.
+- **`<leader>nd`**: Dismiss all.
+
+### WebDAV
 - **`<leader>wc`**: Connect to WebDAV server.
 - **`<leader>wd`**: Delete WebDAV server.
 - **`<leader>wb`**: Browse WebDAV server.
 - **`<leader>ws`**: List WebDAV servers.
 - **`<leader>wf`**: WebDAV search.
 
-## LSP & Code Navigation
+### Commenting (gcc)
+- **`gcc`**: Toggle comment on line.
+- **`gc`** + motion: Comment with motion (e.g., `gc3j` comments 3 lines down).
+- **`gbc`**: Toggle block comment.
+- **`gcO`**: Add comment above.
+- **`gco`**: Add comment below.
+- **`gcA`**: Add comment at end of line.
 
-### Go to Definition/Import
-- **`<leader>ld`**: Go to definition (works for imported modules/functions)
-- **`<leader>lt`**: Go to type definition (helpful for TypeScript/Rust types)
-- **`<leader>li`**: Go to implementation (finds actual implementation)
-- **`<leader>lr`**: Find all references (shows where symbol is used)
+### Multiple Cursors (vim-visual-multi)
+- **`<C-n>`**: Select word under cursor, press again for next occurrence.
+- **`q`**: Skip current and go to next.
+- **`Q`**: Remove current cursor.
+- **`<C-S-n>`**: Select all occurrences.
+- **`<M-C-Down/Up>`**: Add cursor below/above.
 
-### Using Telescope for Advanced Navigation
-- **`<leader>ff`**: Find files (search for specific module files)
-- **`:Telescope live_grep`**: Search text across all files
-- **`:Telescope grep_string`**: Search for word under cursor
-- **`:Telescope lsp_references`**: Find references using LSP
-- **`:Telescope lsp_definitions`**: Find definitions using LSP
-- **`:Telescope lsp_type_definitions`**: Find type definitions using LSP
-- **`:Telescope lsp_implementations`**: Find implementations using LSP
-- **`:Telescope lsp_document_symbols`**: Browse symbols in current file
-- **`:Telescope lsp_workspace_symbols`**: Browse symbols in workspace
+### Git (Neogit)
+- **`<leader>gg`**: Open Neogit.
+- **`<leader>gc`**: Git commit.
+- **`<leader>gp`**: Git push.
+- **`<leader>gl`**: Git pull.
+- **`<leader>gd`**: Open diff view.
+- **`<leader>gh`**: File history.
 
-### Working with Imports
-- **`K`**: Show hover info (displays import source/docs)
-- **`<leader>lh`**: Show hover info (alternative)
-- **`<leader>la`**: Code actions (auto-import suggestions)
-- **`<leader>ln`**: Rename symbol (updates imports too)
+### Extras
+- **`<leader>xe`**: Wrap with Emmet abbreviation (visual).
+- **`<leader>y`**: Copy selection to clipboard (visual).
 
-### Diagnostics & Errors
-- **`<leader>dp`**: Previous diagnostic/error
-- **`<leader>dn`**: Next diagnostic/error
-- **`<leader>dd`**: Show diagnostic details
+### React (Visual Mode)
+- **`<leader>re`**: Extract React component to file.
+- **`<leader>rc`**: Extract React component inline.
 
-### Quick Tips
-- Use `<leader>ld` on any imported symbol to jump to its definition
-- Use `<leader>lr` to see all places where an import is used
-- Use `K` or `<leader>lh` to quickly see documentation for imported functions
-- Use `<leader>fg` + import name to find import statements
+### Quickfix & Location
+- **`<leader>qf`**: Open quickfix list.
+- **`<leader>qc`**: Close quickfix list.
+- **`]q`**: Next quickfix.
+- **`[q`**: Previous quickfix.
+- **`]l`**: Next location.
+- **`[l`**: Previous location.
 
 ## Visual Mode
 
-- **`>`**: Indent the selected text and reselect it.
-- **`<`**: Outdent the selected text and reselect it.
+- **`>`**: Indent and reselect.
+- **`<`**: Outdent and reselect.
+- **`<A-j>`**: Move selection down.
+- **`<A-k>`**: Move selection up.
 
-## On Oil Buffer
+## Neo-tree (File Explorer)
+
+- **`<CR>` / `o` / `l`**: Open file.
+- **`h`**: Close node.
+- **`s`**: Open in vertical split.
+- **`S`**: Open in horizontal split.
+- **`t`**: Open in new tab.
+- **`a`**: Add file.
+- **`A`**: Add directory.
+- **`d`**: Delete.
+- **`r`**: Rename.
+- **`y`**: Copy to clipboard.
+- **`x`**: Cut to clipboard.
+- **`p`**: Paste.
+- **`P`**: Toggle preview.
+- **`R`**: Refresh.
+- **`?`**: Show help.
+- **`q`**: Close.
+
+## Oil Buffer
 
 - **`<C-p>`**: Preview the selected file.
+- **`-`**: Go up a directory.
+- **`<CR>`**: Open file/directory.
 
-## Plugin Suggestions
+## Telescope Tips
 
-### Code Navigation & Understanding
-- **`folke/trouble.nvim`** - Better diagnostics/quickfix list (integrates well with LSP)
-- **`simrat39/symbols-outline.nvim`** - Code outline sidebar for navigating large files
-- **`nvim-treesitter/nvim-treesitter-textobjects`** - Better text objects (select functions, classes, etc.)
-- **`andymass/vim-matchup`** - Enhanced % matching for brackets, tags, keywords
+- **`:Telescope lsp_references`**: Find references using LSP.
+- **`:Telescope lsp_definitions`**: Find definitions using LSP.
+- **`:Telescope lsp_document_symbols`**: Browse symbols in current file.
+- **`:Telescope lsp_workspace_symbols`**: Browse symbols in workspace.
 
-### Code Quality & Productivity  
-- **`windwp/nvim-autopairs`** - Auto-close brackets/quotes (modern alternative to delimitmate)
-- **`numToStr/Comment.nvim`** - Better commenting with `gcc`, `gbc`
-- **`kylechui/nvim-surround`** - Manipulate surrounds (quotes, brackets, etc.)
-- **`mg979/vim-visual-multi`** - Multiple cursors support
-- **`folke/todo-comments.nvim`** - Highlight and search TODO/FIXME comments
+## Configuration Tweaks
 
-### File Management & Navigation
-- **`ThePrimeagen/harpoon`** - Quick file switching (mark frequently used files)
-- **`stevearc/dressing.nvim`** - Better UI for vim.ui.select/input
-- **`folke/which-key.nvim`** - Already have this! Shows key bindings
-
-### Git Integration
-- **`sindrets/diffview.nvim`** - Better git diff views
-- **`TimUntersberger/neogit`** - Full git interface in neovim
-- **`f-person/git-blame.nvim`** - Inline git blame
-
-### Search & Replace
-- **`windwp/nvim-spectre`** - Project-wide search and replace with live preview
-- **`cshuaimin/ssr.nvim`** - Structural search and replace
-
-### UI Enhancements
-- **`folke/noice.nvim`** - Better command line, messages, and popups
-- **`rcarriga/nvim-notify`** - Already have this! Better notifications
-- **`akinsho/bufferline.nvim`** - Better buffer tabs (alternative to barbar)
-- **`nvim-tree/nvim-web-devicons`** - File icons
-
-### Language & Syntax
-- **`windwp/nvim-ts-autotag`** - Auto close/rename HTML tags
-- **`JoosepAlviste/nvim-ts-context-commentstring`** - Better commenting in mixed files
-- **`p00f/nvim-ts-rainbow`** - Rainbow parentheses
-
-### Utilities
-- **`folke/zen-mode.nvim`** - Distraction-free coding
-- **`folke/twilight.nvim`** - Dim inactive code
-- **`iamcco/markdown-preview.nvim`** - Live markdown preview
-- **`wakatime/vim-wakatime`** - Time tracking
-
-### Configuration Tweaks
-- `vim.opt.relativenumber = true` - Relative line numbers for easier movement
-- `vim.opt.scrolloff = 8` - Keep cursor centered while scrolling
+These are already set in your config:
+- `vim.opt.relativenumber = true` - Relative line numbers
+- `vim.opt.scrolloff = 8` - Keep cursor centered
 - `vim.opt.signcolumn = "yes"` - Consistent gutter width
 - `vim.opt.updatetime = 50` - Faster completion
-- `vim.opt.colorcolumn = "80"` - Visual line length guide

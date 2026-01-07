@@ -2,7 +2,22 @@ table.insert(plugins, {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
+		options = {
+			theme = "auto",
+			component_separators = { left = "", right = "" },
+			section_separators = { left = "", right = "" },
+			globalstatus = true,
+		},
 		sections = {
+			lualine_a = { "mode" },
+			lualine_b = {
+				{ "branch", icon = "" },
+				{
+					"diff",
+					symbols = { added = " ", modified = " ", removed = " " },
+				},
+				"diagnostics",
+			},
 			lualine_c = {
 				{
 					function()
@@ -33,15 +48,9 @@ table.insert(plugins, {
 					icon = "",
 				},
 			},
-			lualine_z = {
-				"location",
-				{
-					function()
-						return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-					end,
-					icon = "🏠",
-				},
-			},
+			lualine_x = { "encoding", "fileformat", "filetype" },
+			lualine_y = { "progress" },
+			lualine_z = { "location" },
 		},
 	},
 })

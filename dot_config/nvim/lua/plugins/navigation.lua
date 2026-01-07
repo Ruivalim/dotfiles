@@ -1,3 +1,4 @@
+-- Flash.nvim - the only navigation plugin we need
 table.insert(plugins, {
 	"folke/flash.nvim",
 	event = "VeryLazy",
@@ -119,32 +120,6 @@ table.insert(plugins, {
 })
 
 table.insert(plugins, {
-	"ggandor/leap.nvim",
-	dependencies = { "tpope/vim-repeat" },
-	config = function()
-		-- Don't create default mappings to avoid conflicts with flash.nvim
-		require("leap").opts.safe_labels = "sfnut/SFNLHMUGTZ?"
-		require("leap").opts.labels = "sfnjklhodweimbuyvrgtaqpcxz/SFNJKLHODWEIMBUYVRGTAQPCXZ?"
-		require("leap").opts.case_sensitive = false
-		require("leap").opts.equivalence_classes = { " \t\r\n" }
-
-		-- Create custom mappings that don't conflict
-		vim.keymap.set("n", "gl", function()
-			require("leap").leap()
-		end, { desc = "Leap forward" })
-		vim.keymap.set("n", "gL", function()
-			require("leap").leap({ backward = true })
-		end, { desc = "Leap backward" })
-		vim.keymap.set("x", "gl", function()
-			require("leap").leap()
-		end, { desc = "Leap forward" })
-		vim.keymap.set("x", "gL", function()
-			require("leap").leap({ backward = true })
-		end, { desc = "Leap backward" })
-	end,
-})
-
-table.insert(plugins, {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	init = function()
@@ -195,4 +170,7 @@ table.insert(after_load, function()
 	vim.keymap.set("n", "<leader>lc", "<cmd>lclose<cr>", { desc = "Close location list" })
 	vim.keymap.set("n", "]l", "<cmd>lnext<cr>", { desc = "Next location" })
 	vim.keymap.set("n", "[l", "<cmd>lprev<cr>", { desc = "Previous location" })
+
+	-- Clear search highlight (replaces vim-cool)
+	vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 end)
