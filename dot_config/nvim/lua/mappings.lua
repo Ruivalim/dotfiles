@@ -95,6 +95,21 @@ wk.add({
 	{ "<leader>fp", ":Telescope projects<CR>", desc = "Find Projects", nowait = true, remap = false },
 	{ "<leader>fe", "<cmd>Neotree reveal<cr>", desc = "Reveal in Explorer", nowait = true, remap = false },
 	{
+		"<leader>fy",
+		function()
+			local path = vim.fn.expand("%")
+			if path ~= "" then
+				vim.fn.setreg("+", path)
+				vim.notify('Copied to clipboard: ' .. path, vim.log.levels.INFO)
+			else
+				vim.notify('No file in current buffer', vim.log.levels.WARN)
+			end
+		end,
+		desc = "Yank File Path",
+		nowait = true,
+		remap = false,
+	},
+	{
 		"<leader>fw",
 		function()
 			require("telescope.builtin").find_files({
@@ -138,17 +153,7 @@ wk.add({
 
 	-- Toggle options
 	{ "<leader>t", group = "Toggle", nowait = true, remap = false },
-	{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", nowait = true, remap = false },
 	{ "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, desc = "Toggle Inlay Hints", nowait = true, remap = false },
-	{
-		"<leader>tp",
-		function()
-			require("precognition").toggle()
-		end,
-		desc = "Toggle Precognition",
-		nowait = true,
-		remap = false,
-	},
 	{
 		"<leader>tm",
 		function()
@@ -218,13 +223,6 @@ wk.add({
 	{ "<leader>dp", vim.diagnostic.goto_prev, desc = "Previous Diagnostic", nowait = true, remap = false },
 	{ "<leader>dw", "<cmd>Trouble diagnostics toggle<cr>", desc = "Workspace Diagnostics", nowait = true, remap = false },
 	{ "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics", nowait = true, remap = false },
-
-	-- Session (auto-session)
-	{ "<leader>q", group = "Session", nowait = true, remap = false },
-	{ "<leader>qs", "<cmd>SessionSearch<cr>", desc = "Search Sessions", nowait = true, remap = false },
-	{ "<leader>qS", "<cmd>SessionSave<cr>", desc = "Save Session", nowait = true, remap = false },
-	{ "<leader>qr", "<cmd>SessionRestore<cr>", desc = "Restore Session", nowait = true, remap = false },
-	{ "<leader>qd", "<cmd>SessionDelete<cr>", desc = "Delete Session", nowait = true, remap = false },
 
 	-- Projects
 	{ "<leader>pp", ":Telescope projects<CR>", desc = "Switch Project", nowait = true, remap = false },

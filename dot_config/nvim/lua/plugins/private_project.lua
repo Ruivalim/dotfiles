@@ -1,4 +1,4 @@
--- project.nvim - Project management with auto session
+-- project.nvim - Project management
 table.insert(plugins, {
 	"ahmedkhalf/project.nvim",
 	config = function()
@@ -17,21 +17,4 @@ table.insert(plugins, {
 		-- Telescope integration
 		require("telescope").load_extension("projects")
 	end,
-})
-
--- Auto-session - Automatically save and restore sessions
-table.insert(plugins, {
-	"rmagatti/auto-session",
-	lazy = false,
-	opts = {
-		log_level = "error",
-		auto_session_enable_last_session = false,
-		auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
-		auto_session_enabled = true,
-		auto_save_enabled = true,
-		auto_restore_enabled = true,
-		auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-		auto_session_use_git_branch = true,
-		bypass_session_save_file_types = { "neo-tree", "oil", "toggleterm" },
-	},
 })

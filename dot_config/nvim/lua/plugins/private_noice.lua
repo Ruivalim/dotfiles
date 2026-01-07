@@ -15,9 +15,16 @@ table.insert(plugins, {
 			},
 			hover = {
 				enabled = true,
+				silent = true,
 			},
 			signature = {
 				enabled = true,
+				auto_open = {
+					enabled = true,
+					trigger = true,
+					luasnip = true,
+					throttle = 50,
+				},
 			},
 		},
 		presets = {
@@ -124,6 +131,21 @@ table.insert(plugins, {
 				},
 				win_options = {
 					winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+				},
+			},
+			hover = {
+				border = {
+					style = "rounded",
+				},
+				position = { row = 2, col = 2 },
+				size = {
+					max_width = 80,
+					max_height = 20,
+				},
+				win_options = {
+					winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+					wrap = true,
+					linebreak = true,
 				},
 			},
 		},

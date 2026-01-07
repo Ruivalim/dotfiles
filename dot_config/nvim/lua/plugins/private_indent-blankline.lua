@@ -27,7 +27,6 @@ table.insert(plugins, {
 				"lazy",
 				"mason",
 				"notify",
-				"toggleterm",
 				"lazyterm",
 				"oil",
 			},
