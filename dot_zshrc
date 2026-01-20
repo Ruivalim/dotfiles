@@ -69,6 +69,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Zellij auto-start na sessão "main"
 if [[ -z "$ZELLIJ" && -z "$SSH_CONNECTION" ]]; then
-    exec zellij attach --create main
+  #zellij attach --create main
 fi
 
