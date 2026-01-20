@@ -16,7 +16,7 @@ elif [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  #source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -68,7 +68,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Zellij auto-start na sessão "main"
-if [[ -z "$ZELLIJ" && -z "$SSH_CONNECTION" ]]; then
-  #zellij attach --create main
+if [[ -z "$ZELLIJ" ]]; then
+  zellij --config-dir ~/.config/zellij attach -c main
 fi
-
