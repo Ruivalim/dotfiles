@@ -11,26 +11,26 @@
     "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-opus-4-5-thinking",
+      "model": "claude-opus-4-5-thinking"
     },
-    "model_parameters": [],
+    "model_parameters": []
   },
   "icon_theme": "Catppuccin Mocha",
   "session": {
-    "trust_all_worktrees": true,
+    "trust_all_worktrees": true
   },
   "base_keymap": "VSCode",
   "buffer_font_fallbacks": ["Menlo", "Monaco", "Courier New", "monospace"],
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "file_types": {
-    "jsp": ["*.jsp"],
+    "jsp": ["*.jsp"]
   },
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "Rosé Pine",
+    "dark": "Rosé Pine"
   },
   "auto_install_extensions": {
     "bun-docs-mcp": true,
@@ -41,6 +41,6 @@
     "log": true,
     "mcp-server-sequential-thinking": true,
     "svelte": true,
-    "rose-pine-theme": true,
-  },
+    "rose-pine-theme": true
+  }
 }
