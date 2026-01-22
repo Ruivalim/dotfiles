@@ -10,18 +10,3 @@ font-size = 14
 window-save-state = always
 
 keybind = shift+enter=text:\n
-keybind = super+k=text:\ntput reset\r
-
-# Zellij: Cmd+número para tabs
-keybind = super+1=text:\x141
-keybind = super+2=text:\x142
-keybind = super+3=text:\x143
-keybind = super+4=text:\x144
-keybind = super+5=text:\x145
-keybind = super+6=text:\x146
-keybind = super+7=text:\x147
-keybind = super+8=text:\x148
-keybind = super+9=text:\x149
-
-# Zellij: Cmd+t para nova tab
-keybind = super+t=text:\x14n
