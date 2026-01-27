@@ -448,18 +448,55 @@ cazs() {
     current_sub=$(az account show --query name -o tsv 2>/dev/null)
 
     selected_sub=$(az account list --output table | tail -n +3 | fzf --header="Select Azure Subscription (Current: $current_sub)" --prompt="Subscription > ")
-    
+
     if [ -z "$selected_sub" ]; then
         echo "No subscription selected."
         return 1
     fi
-    
+
     echo $selected_sub
-    
+
     selected_name=$(echo "$selected_sub" | awk '{print $1}')
     selected_id=$(echo "$selected_sub" | awk '{print $(NF-3)}')
 
     echo "✓ Switched to subscription: $selected_id"
 
-    az account set --subscription "$selected_id" 
+    az account set --subscription "$selected_id"
+}
+
+brewsave() {
+    local brewfile="${1:-$HOME/.config/Brewfile}"
+
+    echo "Saving Homebrew packages to $brewfile..."
+    brew bundle dump --file="$brewfile" --force
+
+    if [ $? -eq 0 ]; then
+        local formulae=$(grep -c "^brew " "$brewfile" 2>/dev/null || echo 0)
+        local casks=$(grep -c "^cask " "$brewfile" 2>/dev/null || echo 0)
+        local taps=$(grep -c "^tap " "$brewfile" 2>/dev/null || echo 0)
+        echo "✓ Saved: $formulae formulae, $casks casks, $taps taps"
+    else
+        echo "✗ Failed to save Brewfile"
+        return 1
+    fi
+}
+
+brewrestore() {
+    local brewfile="${1:-$HOME/.config/Brewfile}"
+
+    if [ ! -f "$brewfile" ]; then
+        echo "✗ Brewfile not found: $brewfile"
+        echo "  Run 'brewsave' first to create one"
+        return 1
+    fi
+
+    echo "Restoring Homebrew packages from $brewfile..."
+    brew bundle --file="$brewfile"
+
+    if [ $? -eq 0 ]; then
+        echo "✓ Homebrew packages restored successfully"
+    else
+        echo "✗ Some packages may have failed to install"
+        return 1
+    fi
 }
